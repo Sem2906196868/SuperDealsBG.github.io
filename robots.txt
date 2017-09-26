@@ -1,0 +1,2 @@
+Sitemap: https://superdealsbg.github.io/sitemap.xml
+Sitemap: https://superdealsbg.github.io/js/data/sitemap/sitemap-banggood.xml
