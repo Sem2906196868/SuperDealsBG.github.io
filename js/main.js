@@ -388,9 +388,12 @@ function createPageItem(item) {
 	textSocial += '<center><div class="ya-share2" data-services="facebook,twitter,gplus,pinterest,tumblr,viber,whatsapp,skype,telegram,vkontakte,blogger,delicious,digg,reddit,evernote,linkedin,lj,pocket,qzone,renren,sinaWeibo,surfingbird,tencentWeibo,odnoklassniki,moimir,collections" data-title:twitter="' + currentTitle + '" data-image="' + currentImage + '" data-url="' + currentUrl + '" data-limit="10" data-direction="horizontal" data-popup-direction="top" data-lang="en"></div></center>';
 	textSocial += '<script src="js/social/es5-shims.min.js"></script>';
 	textSocial += '<script src="js/social/share.js"></script>';
-	var textReclame = '<center><ol>';
-	textReclame += '<li><br><a target="_blank" href="https://goo.gl/o11NBx">Buy and sell bitcoins near you</a><br></li>';
-	textReclame += '<li><br><a target="_blank" href="https://goo.gl/1tUykV">Largest Crypto-Mining Marketplace</a><br></li>';
+	var textReclame = '';
+	textReclame += '<hr color="#ccc" noshade>';
+	textReclame += '<center><ol class="items-top-horizontal">';
+	textReclame += '<li><a target="_blank" href="https://goo.gl/1tUykV"><img src="img/Nicehash-logo.png" title="Largest Crypto-Mining Marketplace" alt="Largest Crypto-Mining Marketplace"></a></li>';
+	textReclame += '<li><a target="_blank" href="https://goo.gl/o11NBx"><img src="img/LocalBitcoins-logo.png" title="Buy and sell bitcoins near you" alt="Buy and sell bitcoins near you"></a></li>';
+	textReclame += '<li><a target="_blank" href="https://goo.gl/v2kFq4"><img src="img/Telegram-logo.png" title="Telegram - SuperDeals" alt="Telegram - SuperDeals"></a></li>';
 	textReclame += '</ol><br></center>';
 	textContent += '<a href="../' + offer + '#' + item_search + '"><h1>' + item_title + '</h1></a>';
 	textContent += '<ol class="item">';
