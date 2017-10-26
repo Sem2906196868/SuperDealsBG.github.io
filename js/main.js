@@ -384,6 +384,19 @@ function createPageItem(item) {
 	var currentDescription = $("meta[property='og\\:description']").attr("content");
 	var currentTitle = currentDescription.substr(0, 100) + '... ' + '#SuperDeals';
 	var currentUrl = $("link[rel='canonical']").attr("href");
+
+	var textScryptLD = '';
+	textScryptLD += '<script type="application/ld+json">';
+	textScryptLD += '{';
+	textScryptLD += '"@context": "http://schema.org/",';
+	textScryptLD += '"@type": "Recipe",';
+	textScryptLD += '"name": "' + item_title + '",';
+	textScryptLD += '"image": "' + currentImage + '",';
+	textScryptLD += '"url": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
+	textScryptLD += '}';
+	textScryptLD += '</script>';
+	$("head").append(textScryptLD);
+
 	var textSocial = '';
 	textSocial += '<center><div class="ya-share2" data-services="facebook,twitter,gplus,pinterest,tumblr,viber,whatsapp,skype,telegram,vkontakte,blogger,delicious,digg,reddit,evernote,linkedin,lj,pocket,qzone,renren,sinaWeibo,surfingbird,tencentWeibo,odnoklassniki,moimir,collections" data-title:twitter="' + currentTitle + '" data-image="' + currentImage + '" data-url="' + currentUrl + '" data-limit="10" data-direction="horizontal" data-popup-direction="top" data-lang="en"></div></center>';
 	textSocial += '<script src="js/social/es5-shims.min.js"></script>';
