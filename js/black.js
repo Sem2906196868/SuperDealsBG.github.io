@@ -377,6 +377,17 @@ function createPageItem(item) {
 	} catch (e) {
 	}
 
+	var isLocal = false;
+	try {
+		if (item.l == 1) {
+			isLocal = true;
+		}
+	}
+	catch (e) {}
+	if (isLocal) {
+		currentImage = 'image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
+	}
+
 	$("meta[name='description']").attr("content", item_title);
 	$("meta[name='keywords']").attr("content", "SuperDealsBG, " + item_title.split("  ").join(" ").split(" ").join(", "));
 	$("meta[property='og\\:type']").attr("content", "article");
@@ -432,6 +443,7 @@ function createPage(dataStart, dataLimit) {
 
 			var item_search = item.search;
 			var currentImage = '';
+
 			var isLocal = false;
 			try {
 				if (item.l == 1) {
@@ -440,7 +452,7 @@ function createPage(dataStart, dataLimit) {
 			} catch(e){
 			}
 			if (isLocal) {
-				currentImage = 'js/data/img/' + item_search.slice(0, 4) + '/' + item_search + '.jpg';
+				currentImage = 'image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
 			} 
 			else {		
 				if (currentImage == '') {
@@ -1029,7 +1041,7 @@ $(document).ready(function() {
 	catch (e) {
 		my_ga('send', 'event', 'addEventListener', 'Error-wheel', e);
 	}
-	
+
 });
 
 $(document).keydown(function(eventObject) {
