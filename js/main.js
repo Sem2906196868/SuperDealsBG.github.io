@@ -380,7 +380,7 @@ function createPageItem(item) {
 	}
 	catch (e) {}
 	if (isLocal) {
-		currentImage = 'image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
+		currentImage = 'https://superdealsbg.github.io/image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
 	}
 
 	$("meta[name='description']").attr("content", item_title);
