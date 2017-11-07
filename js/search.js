@@ -28,6 +28,9 @@ function loadScripts(scripts, callback) {
 function addDataToArrayScript(data) {
 	var array = data.files;
 	for (var i = 0; i < array.length; i++) {
+		if (i > 3) { 
+			break; 
+		}
 		App.arrayScript.push(array[i].file);
 	}
 }
@@ -67,6 +70,7 @@ $(document).ready(function() {
 		$.when(loadScripts(App.arrayScript), loadScripts(['js/jquery.dataTables.js'])).done(function() {
 			var tableSuperdeals = $('#superdeals').DataTable( {
 				data: App.dataAll,
+				order: [],
 				columns: [
 					{ title: "" },
 					{ title: "" },
