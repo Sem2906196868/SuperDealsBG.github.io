@@ -1,0 +1,90 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family: sans-serif;	
+	color: dimgray;        
+	background-color: #f7f7f7;
+}
+#logo {
+	min-width: 600px;
+}
+#content {
+	max-width: 600px;
+}
+h1 {
+	padding: 5px;
+	max-width: 600px;
+	font-size: 24px;
+}     
+a {
+	outline: none;
+	text-decoration: none;	
+	color: dimgray;
+}
+img {
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background-color: #ffffff;
+	border-radius: 2px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+}
+img:hover {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.48);
+}
+a:focus .img_wrapper {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.48);	
+}
+.img_wrapper {
+	margin: 0;
+	padding: 0;
+	width: 74px;
+	height: 74px;
+	display: inline-block;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background-color: #ffffff;
+	border-radius: 2px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+}
+.img_wrapper:hover {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.48);
+}
+.img_wrapper img {
+	height: 100%;
+	width: auto;
+	font-size: xx-small;
+	/* color: #ffffff; */
+	/* opacity: 0; */
+	-webkit-transition: opacity 150ms;
+	-moz-transition: opacity 150ms;
+	-ms-transition: opacity 150ms;
+	transition: opacity 150ms;
+}
+.img_wrapper.loaded img {
+	opacity: 1;
+}
+
+#superdeals_info, #superdeals_paginate {
+	float: none;
+	text-align: center;
+	color: dimgray;
+}
+#superdeals_info {
+	font-size: 10px;
+}
+#superdeals, #superdeals thead th{
+	border-bottom: 1px solid gray;
+}
+#superdeals_length, #superdeals_length select {
+	color: dimgray;
+}
+#superdeals_filter, #superdeals_filter input {
+	color: dimgray;			
+}
