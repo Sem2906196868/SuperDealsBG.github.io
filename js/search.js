@@ -28,7 +28,7 @@ function loadScripts(scripts, callback) {
 function addDataToArrayScript(data) {
 	var array = data.files;
 	for (var i = 0; i < array.length; i++) {
-		if (i > 3) { 
+		if (i > 1) { 
 			break; 
 		}
 		App.arrayScript.push(array[i].file);
