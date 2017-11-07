@@ -68,6 +68,7 @@ $(document).ready(function() {
 	});
 	$.getScript('js/data/data.js', function () {
 		$.when(loadScripts(App.arrayScript), loadScripts(['js/jquery.dataTables.js'])).done(function() {
+			$('.loader').addClass('hide');			
 			var tableSuperdeals = $('#superdeals').DataTable( {
 				data: App.dataAll,
 				order: [],

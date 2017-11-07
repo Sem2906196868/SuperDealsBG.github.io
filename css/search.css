@@ -88,3 +88,25 @@ a:focus .img_wrapper {
 #superdeals_filter, #superdeals_filter input {
 	color: dimgray;			
 }
+
+.hide {
+	display: none !important;
+}
+
+.loader {
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  border-top: 2px solid dimgray;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
