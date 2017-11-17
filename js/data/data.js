@@ -2,8 +2,8 @@ addDataToArrayScript({
 "files": [
 {
 "file": "js/data/data-0003.js",
-"count": "3301",
-"start": "000300013301",
+"count": "3904",
+"start": "000300013904",
 "end": "000300010001"
 },
 {
@@ -19,5 +19,5 @@ addDataToArrayScript({
 "end": "000100000001"
 }
 ],
-"count": "13301"
+"count": "13904"
 });
