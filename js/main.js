@@ -422,8 +422,8 @@ function createPageItem(item) {
 	textReclame += '</ol><br></center>';
 	textContent += '<a href="../' + offer + '#' + item_search + '"><h1>' + item_title + '</h1></a>';
 	textContent += '<ol class="item">';
-	//textContent += '<li><a id="' + item_search + '" href="' + item_url + '" target="_blank"><div class="img_wrapper"><img src="' + currentImage + '" title="' + item_title + '" alt="' + item_title + '"></div></a></li>';
-	textContent += '<li><a id="' + item_search + '" href="../' + offer + '#' + item_search + '" onclick="getCurrentItemURL(); return false;" target="_blank"><div class="img_wrapper"><img src="' + currentImage + '" title="' + item_title + '" alt="' + item_title + '"></div><p>SEE MORE</p></a></li>';
+	textContent += '<li><a id="' + item_search + '" href="' + item_url + '" target="_blank"><div class="img_wrapper"><img src="' + currentImage + '" title="' + item_title + '" alt="' + item_title + '"></div><p>SEE MORE</p></a></li>';
+	//textContent += '<li><a id="' + item_search + '" href="../' + offer + '#' + item_search + '" onclick="getCurrentItemURL(); return false;" target="_blank"><div class="img_wrapper"><img src="' + currentImage + '" title="' + item_title + '" alt="' + item_title + '"></div><p>SEE MORE</p></a></li>';
 	textContent += '</ol>';
 	textContent += textSocial;
 	textContent += textReclame;
