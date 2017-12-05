@@ -868,8 +868,8 @@ $(document).ready(function () {
 	textMain += '</main>';
 	textMain += textFooter;
 	textMain += '<div id="footerPage">';
-	textMain += '<span id="footerInfo">SuperDeals &copy; 2017</span>';
-	textMain += '<span id="footerRSS"></span>';
+	textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2017</span></a>';
+	textMain += '<a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><span id="footerRSS"></span></a>';
 	textMain += '</div>';
 	textMain += '</footer>';
 	$("#main").html(textMain);
@@ -919,6 +919,7 @@ $(document).ready(function () {
 		hideHeaderAndFooter();
 		my_ga('send', 'event', 'hideHeaderAndFooter', 'click', 'elementInfoPage');
 	});
+/*
 	App.elementFooterInfo.click(function () {
 		getInfoPage();
 		my_ga('send', 'event', 'getInfoPage', 'click', 'elementFooterInfo');
@@ -927,6 +928,7 @@ $(document).ready(function () {
 		getRSSPage();
 		my_ga('send', 'event', 'getRSSPage', 'click', 'elementFooterRSS');
 	});
+*/	
 	App.info.click(function () {
 		clearFindToSearch();
 		//location.hash = '';
