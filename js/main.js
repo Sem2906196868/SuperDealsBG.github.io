@@ -416,7 +416,7 @@ function createPageItem(item) {
 	var textReclame = '';
 	textReclame += '<hr color="#ccc" noshade>';
 	textReclame += '<center><ol class="items-top-horizontal">';
-	textReclame += '<li><a target="_blank" href="https://goo.gl/1tUykV"><img src="img/Nicehash-logo.png" title="Largest Crypto-Mining Marketplace" alt="Largest Crypto-Mining Marketplace"></a></li>';
+	//textReclame += '<li><a target="_blank" href="https://goo.gl/1tUykV"><img src="img/Nicehash-logo.png" title="Largest Crypto-Mining Marketplace" alt="Largest Crypto-Mining Marketplace"></a></li>';
 	textReclame += '<li><a target="_blank" href="https://goo.gl/o11NBx"><img src="img/LocalBitcoins-logo.png" title="Buy and sell bitcoins near you" alt="Buy and sell bitcoins near you"></a></li>';
 	textReclame += '<li><a target="_blank" href="https://goo.gl/v2kFq4"><img src="img/Telegram-logo.png" title="Telegram - SuperDeals" alt="Telegram - SuperDeals"></a></li>';
 	textReclame += '</ol><br></center>';
