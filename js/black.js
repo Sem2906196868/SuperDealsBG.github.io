@@ -853,7 +853,7 @@ $(document).ready(function() {
 	textMain += '</main>';
 	textMain += textFooter;
 	textMain += '<div id="footerPage">';
-	textMain += '<span id="footerInfo">SuperDeals &copy; 2017</span>';
+	textMain += '<span id="footerInfo">SuperDeals &copy; 2018</span>';
 	textMain += '<span id="footerRSS"></span>';
 	textMain += '</div>';
 	textMain += '</footer>';

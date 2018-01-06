@@ -868,7 +868,7 @@ $(document).ready(function () {
 	textMain += '</main>';
 	textMain += textFooter;
 	textMain += '<div id="footerPage">';
-	textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2017</span></a>';
+	textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2018</span></a>';
 	textMain += '<a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><span id="footerRSS"></span></a>';
 	textMain += '</div>';
 	textMain += '</footer>';
