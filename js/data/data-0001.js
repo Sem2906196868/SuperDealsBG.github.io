@@ -1,4 +1,4 @@
-﻿addArrayToDataAll([
+addArrayToDataAll([
 {
 "title": "Barsetto Portable Hand Press Coffee Maker Mini Handheld Espresso Pods Coffee Capsule Machine (1126925)",
 "image": "https://img.banggood.com/thumb/gallery/oaupload/banggood/images/BA/33/5948b92c-3cc4-4f5c-a97f-93250eb58975.jpg",

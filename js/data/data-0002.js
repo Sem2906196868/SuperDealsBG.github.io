@@ -1,4 +1,4 @@
-﻿addArrayToDataAll([
+addArrayToDataAll([
 {
 "title": "Couple Sport Shoes Running Casual Lace Up In Mesh (1133284)",
 "image": "https://img1.banggood.com/thumb/gallery/oaupload/banggood/images/34/C0/683366b0-7ad3-4b65-8354-4a8c9af2c8b7.jpg",
