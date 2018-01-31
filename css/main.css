@@ -502,3 +502,17 @@ text-shadow: 0 2px 2px rgba(0,0,0,.36);
 	width: 48px;
 	height: 48px;
 }
+.social-logo-small {
+	width: 28px;
+	height: 28px;
+}
+.footer-logo {
+	padding: 3px;
+}
+.footer-logo li {
+	display: inline;
+}
+.footer-logo img {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+}
