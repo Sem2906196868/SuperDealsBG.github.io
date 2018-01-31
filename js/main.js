@@ -574,7 +574,8 @@ function getCurrentItemURL() {
 }
 
 function getMainStartPage() {
-	openURL("/", false);
+	openURL("/about", true);
+	//openURL("/", false);
 }
 
 function getSuperDealsTwitterPage() {
@@ -870,12 +871,13 @@ $(document).ready(function () {
 	textMain += '<div id="footerPage">';
 	
 	textMain += '<ol class="footer-logo">';
-	textMain += '	<li><a href="https://www.instagram.com/superdeals.gb/" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
+	textMain += '	<li><a href="https://superdealsgb.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals" alt="SuperDeals"></a></li>';
+	textMain += '	<li><a href="https://www.instagram.com/superdeals.bg/" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
 	textMain += '	<li><a href="https://goo.gl/Omdm8u" target="_blank"><img class="social-logo-small" src="images/twitter-128x128.png" alt="Twitter" title="Twitter"></a></li>';
 	textMain += '	<li><a href="http://telegram.me/SuperDeals" target="_blank"><img class="social-logo-small" src="images/telegram-128x128.png" alt="Telegram" title="Telegram"></a></li>';
-	textMain += '	<li><a href="https://www.youtube.com/channel/UCs_VSMjxoz236CFi5gJ5UWw" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
-	textMain += '	<li><a href="https://plus.google.com/103005880749501131456" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
-	textMain += '	<li><a href="http://feeds.feedburner.com/GB/SuperDeals" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
+	textMain += '	<li><a href="https://www.youtube.com/channel/UC29U65n152gFoKaBh3Z0sRQ" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
+	textMain += '	<li><a href="https://plus.google.com/110735259612773101703" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
+	textMain += '	<li><a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
 	textMain += '</ol>';
 
 	//textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2018</span></a>';
