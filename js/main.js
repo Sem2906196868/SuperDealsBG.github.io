@@ -1,5 +1,5 @@
 var isRandom = true;
-var offerName = '';
+var offerName = 'Banggood';
 var offer = '';
 var initialPoint = undefined;
 var finalPoint = undefined;
