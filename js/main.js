@@ -838,7 +838,8 @@ $(document).ready(function () {
 	textMain += '<div class="progress"></div>';
 	textMain += textHeader;
 	textMain += '<div id="headerPage">';
-	textMain += '<span class="logoImage"></span>';
+	textMain += '<a href="/about" target="_blank"><span class="logoImage"></span></a>';
+	//textMain += '<span class="logoImage"></span>';
 	textMain += '<span class="titlePage">SuperDeals</span>';
 	textMain += '<span class="titleOffer">' + offerName + '</span>';
 	textMain += '<span id="infoPage"></span>';
@@ -854,7 +855,8 @@ $(document).ready(function () {
 	textMain += textMainNavigation;
 	textMain += '<span id="mainLeft" title="&larr;prev"></span>';
 	textMain += '<span id="mainRight" title="next&rarr;"></span>';
-	textMain += '<span class="logoImage"></span>';
+	textMain += '<a href="/about" target="_blank"><span class="logoImage"></span></a>';
+	//textMain += '<span class="logoImage"></span>';
 	textMain += '<span class="titlePage">SuperDeals</span>';
 	textMain += '<span class="titleOffer">' + offerName + '</span>';
 	if (App.mode == 'items') {
@@ -871,13 +873,14 @@ $(document).ready(function () {
 	textMain += '<div id="footerPage">';
 	
 	textMain += '<ol class="footer-logo">';
-	textMain += '	<li><a href="https://superdealsgb.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals" alt="SuperDeals"></a></li>';
+	textMain += '	<li><a href="https://superdealsgb.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - Gearbest" alt="SuperDeals - Gearbest"></a></li>';
 	textMain += '	<li><a href="https://www.instagram.com/superdeals.bg/" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
 	textMain += '	<li><a href="https://goo.gl/Omdm8u" target="_blank"><img class="social-logo-small" src="images/twitter-128x128.png" alt="Twitter" title="Twitter"></a></li>';
 	textMain += '	<li><a href="http://telegram.me/SuperDeals" target="_blank"><img class="social-logo-small" src="images/telegram-128x128.png" alt="Telegram" title="Telegram"></a></li>';
 	textMain += '	<li><a href="https://www.youtube.com/channel/UC29U65n152gFoKaBh3Z0sRQ" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
 	textMain += '	<li><a href="https://plus.google.com/110735259612773101703" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
 	textMain += '	<li><a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
+	textMain += '	<li><a href="https://superdealsae.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - AliExpress" alt="SuperDeals - AliExpress"></a></li>';
 	textMain += '</ol>';
 
 	//textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2018</span></a>';
