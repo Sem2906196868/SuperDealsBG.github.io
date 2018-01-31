@@ -922,10 +922,10 @@ $(document).ready(function () {
 		//App.preLoad = setInterval(preLoadPage, 500);
 		preLoadPage();
 	});
-	App.elementLogoImage.click(function () {
-		getMainStartPage();
-		my_ga('send', 'event', 'getMainStartPage', 'click', 'elementLogoImage');
-	});
+	//App.elementLogoImage.click(function () {
+	//	getMainStartPage();
+	//	my_ga('send', 'event', 'getMainStartPage', 'click', 'elementLogoImage');
+	//});
 	App.elementTitlePage.click(function () {
 		getSuperDealsPage();
 		my_ga('send', 'event', 'getSuperDealsPage', 'click', 'elementTitlePage');
