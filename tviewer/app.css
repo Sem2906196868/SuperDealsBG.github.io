@@ -1,29 +1,40 @@
 ﻿/*
 iframe {
-	border: medium none; 
-	overflow: hidden;	
-	min-width: 320px;	
-	min-height: 800px;
-	height: auto;
+border: medium none; 
+overflow: hidden;	
+min-width: 320px;	
+min-height: 800px;
+height: auto;
 }
 */
 
 /*
 iframe {
-	-ms-transform: skew(5deg,-5deg);
-	-webkit-transform: skew(5deg,-5deg);
-	transform: skew(5deg,-5deg);
+-ms-transform: skew(5deg,-5deg);
+-webkit-transform: skew(5deg,-5deg);
+transform: skew(5deg,-5deg);
 }
 
 .posts {
-	-ms-transform: scale(0.9,0.9);
-	-webkit-transform: scale(0.9,0.9);
-	transform: scale(0.9,0.9);
+-ms-transform: scale(0.9,0.9);
+-webkit-transform: scale(0.9,0.9);
+transform: scale(0.9,0.9);
 }
 */
 
+.letter-circle {
+	display: inline-block;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background: #E0E0E0;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+}
+
 .range-message {
-	margin-top: 80px;
+	margin-top: 60px;
 	width: 90%;
 }
 

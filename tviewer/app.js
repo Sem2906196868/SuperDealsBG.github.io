@@ -24,11 +24,11 @@ function getRandomMessage() {
 }
 
 function getStartMessage() {
-	App.currentChannel.value = $("#rangeMessage")[0].valueAsNumber;
+	App.currentChannel.value = $('#rangeMessage')[0].valueAsNumber;
 }
 
 function setRangeMessage() {
-	var rangeMessage = $("#rangeMessage")[0];
+	var rangeMessage = $('#rangeMessage')[0];
 	rangeMessage.min = App.currentChannel.min;
 	rangeMessage.max = App.currentChannel.max;
 	rangeMessage.step = App.currentChannel.step;
@@ -36,15 +36,18 @@ function setRangeMessage() {
 }
 
 function getCurrentChannel() {
-	var searchChannel = $("#searchChannel")[0];
+	var searchChannel = $('#searchChannel')[0];
 	var searchText = searchChannel.value;
 	if (searchText != '') {
 		App.currentChannel = {name: searchText,	min: 1,	max: 1000, step: 5,	value: 1};
 		App.channels.push(App.currentChannel);
 		searchChannel.value = '';
 		searchText = '';
-		$("#imgChannel").attr("alt", App.currentChannel.name);
-		$("#nameChannel").text(App.currentChannel.name);
+		var currentChannelName = App.currentChannel.name;
+		var logoChannel = $('#logoChannel');
+		logoChannel.attr('title', currentChannelName);
+		logoChannel.text(currentChannelName.charAt(0).toUpperCase());
+		$('#nameChannel').text(' ' + currentChannelName);
 		setRangeMessage();
 		getPage();
 	}
@@ -66,31 +69,186 @@ function getNextPage() {
 	getPage();
 }
 
+function renderDialogAddChannel() {
+	$('#modalDialog').html(`
+<div class="modal fade" id="modalDialogAddChannel" tabindex="-1" role="dialog" aria-labelledby="modalDialogAddChannelLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="modalDialogAddChannelLabel">Add channel</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<span>
+<input name="searchChannel" id="searchChannel" class="form-control" type="text" id="search" placeholder="Enter telegram public channel name...">
+<small class="text-muted">Example: 
+<a href="" class="btnAddChannel badge badge-pill badge-light">Durov</a>, 
+<a href="" class="btnAddChannel badge badge-pill badge-light">SuperDeals</a>, 
+<a href="" class="btnAddChannel badge badge-pill badge-light">ThisIsInterestin</a>, 
+<a href="" class="btnAddChannel badge badge-pill badge-light">ReceptiVkusno</a>, 
+<a href="" class="btnAddChannel badge badge-pill badge-light">AndroidResId</a> etc.</small>
+</span>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button id="btnDialogAddChannelSave" type="button" class="btn btn-primary" data-dismiss="modal">Add channel</button>
+</div>
+</div>
+</div>
+</div>
+`);
+
+	var searchChannel = $('#searchChannel');
+	var btnAddChannel = $('.btnAddChannel');
+	btnAddChannel.click(function (event) {
+		var nameChannel = $(this).text();
+		event.preventDefault();
+		event.stopPropagation();
+		searchChannel.val(nameChannel);
+		btnAddChannel.blur();
+		//my_ga('send', 'event', 'searchChannel: ' + nameChannel, 'click', 'btnAddChannel');
+	});
+
+	$('#modalDialogAddChannel').on('hidden.bs.modal', function (e) {
+		$('#modalDialog').html('');
+	});	
+	$('#btnDialogAddChannelSave').click(function (event) {
+		getCurrentChannel();
+		//my_ga('send', 'event', 'getCurrentChannel', 'click', 'btnDialogAddChannelSave');
+	});
+}
+function renderDialogSettings() {
+	var currentChannelName = App.currentChannel.name;
+	$('#modalDialog').html(`
+<div class="modal fade" id="modalDialogSettings" tabindex="-1" role="dialog" aria-labelledby="modalDialogSettingsLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="modalDialogSettingsLabel">Settings</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+
+<span class="letter-circle" title="` + currentChannelName + `">` + currentChannelName.charAt(0).toUpperCase() + `</span><span id="nameChannel"> ` + currentChannelName + `</span><br/><br/>
+<form>
+<div class="form-group">
+<label for="currentChannelMin" class="bmd-label-floating">Min message</label>
+<input type="number" class="form-control" id="currentChannelMin" name="currentChannelMin" min="1" value="` + App.currentChannel.min + `">
+<span class="bmd-help">` + currentChannelName + ` channel min message</span>
+</div>
+<div class="form-group">
+<label for="currentChannelMax" class="bmd-label-floating">Max message</label>
+<input type="number" class="form-control" id="currentChannelMax" name="currentChannelMax" min="1" value="` + App.currentChannel.max + `">
+<span class="bmd-help">` + currentChannelName + ` channel max message</span>
+</div>
+<div class="form-group">
+<label for="currentChannelValue" class="bmd-label-floating">Current message</label>
+<input type="number" class="form-control" id="currentChannelValue" name="currentChannelValue" min="1" value="` + App.currentChannel.value + `">
+<span class="bmd-help">` + currentChannelName + ` channel current message</span>
+</div>
+<div class="form-group">
+<label for="currentChannelStep" class="bmd-label-floating">Step messages</label>
+<input type="number" class="form-control" id="currentChannelStep" name="currentChannelStep" min="1" max="10" step="1" value="` + App.currentChannel.step + `">
+<span class="bmd-help">` + currentChannelName + ` channel step messages</span>
+</div>
+</form>
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button id="btnDialogSettingsSave" type="button" class="btn btn-primary" data-dismiss="modal">Save settings</button>
+</div>
+</div>
+</div>
+</div>
+`);
+	$('#modalDialog').bootstrapMaterialDesign();
+
+	$('#modalDialogSettings').on('hidden.bs.modal', function (e) {
+		$('#modalDialog').html('');
+	});
+	$('#btnDialogSettingsSave').click(function (event) {
+		alert('modalDialogSettingsSave');
+		//TODO Save settings...
+		//my_ga('send', 'event', 'renderDialogSettingsSave', 'click', 'btnDialogSettingsSave');
+	});
+}
+function renderDialogAbout() {
+	$('#modalDialog').html(`
+<div class="modal fade" id="modalDialogAbout" tabindex="-1" role="dialog" aria-labelledby="modalDialogAboutLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="modalDialogAboutLabel">About</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<center>
+<h4>TViewer</h4>
+<br/>
+<img src="telegram.svg" width="120" height="120" class="img-fluid rounded" alt="TViewer">
+<br/><br/>
+<p>Telegram public channel viewer</p>
+</center>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+`);
+
+	$('#modalDialogAbout').on('hidden.bs.modal', function (e) {
+		$('#modalDialog').html('');
+	});	
+}
+
 function preRenderPage() {
 
+	var currentChannelName = App.currentChannel.name;
 	var textContent = '';
 	textContent += `
+<header>
 <nav class="navbar fixed-top navbar-light bg-light">
-<a id="elementNavbarBrand" class="navbar-brand" href=""><img id="imgChannel" src="telegram.png" width="30" height="30" class="d-inline-block align-top" alt="` + App.currentChannel.name + `"> <span id="nameChannel">` + App.currentChannel.name + `</span></a>
-<ul class="pagination">
-<li class="page-item form-inline">
-<span>
-<input name="searchChannel" id="searchChannel" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</span>
-<a id="elementSearch" class="page-link bg-light" href="" title="Search"><i class="material-icons">search</i></a>
-</li>
-</ul>
-<ul class="pagination justify-content-end">
-<li class="page-item"><a id="elementPrevPage" class="page-link bg-light" href="" title="Previous"><i class="material-icons">keyboard_arrow_left</i></a></li>
-<li class="page-item"><a id="elementNextPage" class="page-link bg-light" href="" title="Next"><i class="material-icons">keyboard_arrow_right</i></a></li>
-</ul>
-</nav>`;
+<a id="elementNavbarBrand" class="navbar-brand" href="">
+<span id="logoChannel" class="letter-circle" title="` + currentChannelName + `">` + currentChannelName.charAt(0).toUpperCase() + `</span><span id="nameChannel"> ` + currentChannelName + `</span>
+<!-- <img id="logoBrand" src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="TViewer" alt="TViewer"><span id="nameBrand"> TViewer</span> -->
+</a>
+<div class="form-inline">
+<button id="elementPrevPage" class="btn bmd-btn-icon" type="button" title="Previous"><i class="material-icons">keyboard_arrow_left</i></button>
+<button id="elementNextPage" class="btn bmd-btn-icon" type="button" title="Next"><i class="material-icons">keyboard_arrow_right</i></button>
+<div class="dropdown pull-xs-right">
+<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="lr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Menu">
+<i class="material-icons">more_vert</i>
+</button>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1" style="left:-150px">
+<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel">Add channel</button>
+<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings">Settings</button>
+<div class="dropdown-divider"> </div>
+<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout">About</button>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div id="modalDialog"></div>
+`;
 
-	textContent += '<center>';
-	textContent += '<div class="range-message"><input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="' + App.currentChannel.min + '" max="' + App.currentChannel.max + '" step="' + App.currentChannel.step + '" value="' + App.currentChannel.value + '"></div>';
-	textContent += '<div id="main" class="container-fluid">';
-	textContent += '</div>';
-	textContent += '</center>';
+	textContent += `
+<center>
+<div class="range-message">
+<input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="` + App.currentChannel.min + `" max="` + App.currentChannel.max + `" step="` + App.currentChannel.step + `" value="` + App.currentChannel.value + `">
+</div>
+<main id="main" role="main" class="container-fluid"></main>
+</center>
+`;
 	$("#app").html(textContent);
 
 }
@@ -101,16 +259,18 @@ function getPage() {
 		App.currentChannel.value = App.currentChannel.min;
 	}
 	if (App.currentChannel.value > App.currentChannel.max - App.currentChannel.step) {
-		App.currentChannel.value = App.currentChannel.max - App.currentChannel.step;
+		App.currentChannel.max = App.currentChannel.value + App.currentChannel.step;
 	}
 	App.currentHash = App.currentChannel.value;
 
 	var textContent = '';
 	textContent += '<div class="posts">';
+	//textContent += '<div class="card"><div class="card-body">';
 	for (var i = 0; i < App.currentChannel.step; i++) {
 		//textContent +='<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
 		textContent +='<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
 	}
+	//textContent += '</div></div>';
 	textContent +='</div>';
 
 	$("#main").html(textContent);
@@ -163,7 +323,6 @@ $(document).ready(function(){
 	getPage();
 
 	var elementNavbarBrand = $("#elementNavbarBrand");
-	var elementSearch = $("#elementSearch");
 	var elementPrevPage = $("#elementPrevPage");
 	var elementNextPage = $("#elementNextPage");
 
@@ -174,26 +333,28 @@ $(document).ready(function(){
 		elementNavbarBrand.blur();
 		//my_ga('send', 'event', 'getRandomPage', 'click', 'elementNavbarBrand');
 	});
-	elementSearch.click(function (event) {
-		event.preventDefault();
-		event.stopPropagation();
-		getCurrentChannel();
-		elementSearch.blur();
-		//my_ga('send', 'event', 'getCurrentChannel', 'click', 'elementSearch');
-	});
 	elementPrevPage.click(function (event) {
-		event.preventDefault();
-		event.stopPropagation();
 		getPrevPage();
 		elementPrevPage.blur();
 		//my_ga('send', 'event', 'getPrevPage', 'click', 'elementPrevPage');
 	});
 	elementNextPage.click(function (event) {
-		event.preventDefault();
-		event.stopPropagation();
 		getNextPage();
 		elementNextPage.blur();
 		//my_ga('send', 'event', 'getNextPage', 'click', 'elementNextPage');
+	});
+
+	$("#btnDialogAddChannel").click(function (event) {
+		renderDialogAddChannel();
+		//my_ga('send', 'event', 'renderDialogAddChannel', 'click', 'btnDialogAddChannel');
+	});
+	$("#btnDialogSettings").click(function (event) {
+		renderDialogSettings();
+		//my_ga('send', 'event', 'renderDialogSettings', 'click', 'btnDialogSettings');
+	});
+	$("#btnDialogAbout").click(function (event) {
+		renderDialogAbout();
+		//my_ga('send', 'event', 'renderDialogAbout', 'click', 'btnDialogAbout');
 	});
 
 	var initialPoint = undefined;
