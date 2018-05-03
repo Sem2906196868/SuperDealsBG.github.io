@@ -1,19 +1,21 @@
 ﻿var App = {};
 App.channels = [];
+
 App.channels.push({
 	name: "SuperDeals",
 	min: 510000,
-	max: 567209,
+	max: 567489,
 	step: 5,
 	value: 510000
 });
 App.channels.push({
 	name: "ThisIsInterestin",
-	min: 4,
-	max: 237156,
+	min: 237000,
+	max: 237238,
 	step: 5,
-	value: 4
+	value: 237000
 });
+
 App.currentChannel = App.channels[0];
 App.currentHash = '';
 
@@ -35,12 +37,38 @@ function setRangeMessage() {
 	rangeMessage.value = App.currentChannel.value;
 }
 
+function searchChannelInArray(array, searchFor, property) {
+	var retVal = -1;
+	var self = array;
+	for(var index=0; index < self.length; index++){
+		var item = self[index];
+		if (item.hasOwnProperty(property)) {
+			if (item[property].toLowerCase() === searchFor.toLowerCase()) {
+				retVal = index;
+				return retVal;
+			}
+		}
+	};
+	return retVal;
+}
+
 function getCurrentChannel() {
 	var searchChannel = $('#searchChannel')[0];
 	var searchText = searchChannel.value;
 	if (searchText != '') {
-		App.currentChannel = {name: searchText,	min: 1,	max: 1000, step: 5,	value: 1};
-		App.channels.push(App.currentChannel);
+		var searchIndex = searchChannelInArray(App.channels, searchText, 'name');
+		if (searchIndex == -1) {
+			if (searchText.toLowerCase() === 'SuperDeals'.toLowerCase()) {
+				App.currentChannel = {name: 'SuperDeals', min: 510000,	max: 567489, step: 5, value: 510000};
+			} else if (searchText.toLowerCase() === 'ThisIsInterestin'.toLowerCase()) {
+				App.currentChannel = {name: 'ThisIsInterestin', min: 237000,	max: 237238, step: 5, value: 237000};
+			} else {
+				App.currentChannel = {name: searchText,	min: 1,	max: 1000, step: 5,	value: 1};
+			}
+			App.channels.push(App.currentChannel);
+		} else {
+			App.currentChannel = App.channels[searchIndex];
+		}
 		searchChannel.value = '';
 		searchText = '';
 		var currentChannelName = App.currentChannel.name;
@@ -48,6 +76,27 @@ function getCurrentChannel() {
 		logoChannel.attr('title', currentChannelName);
 		logoChannel.text(currentChannelName.charAt(0).toUpperCase());
 		$('#nameChannel').text(' ' + currentChannelName);
+
+		var textListChannel = "";
+		for (i = 0; i < App.channels.length; i++) {
+			textListChannel += '<button class="dropdown-item list-channel-item" type="button">' + App.channels[i].name + '</button>';
+		}
+		$("#listChannel").html(textListChannel);
+
+		var listChannelItem = $('.list-channel-item');
+		listChannelItem.click(function (event) {
+			var nameChannel = $(this).text();
+			App.currentChannel = App.channels[searchChannelInArray(App.channels, nameChannel, 'name')];
+			var currentChannelName = App.currentChannel.name;
+			var logoChannel = $('#logoChannel');
+			logoChannel.attr('title', currentChannelName);
+			logoChannel.text(currentChannelName.charAt(0).toUpperCase());
+			$('#nameChannel').text(' ' + currentChannelName);
+			setRangeMessage();
+			getPage();
+			//my_ga('send', 'event', 'selectChannel: ' + nameChannel, 'click', 'listChannelItem');
+		});
+
 		setRangeMessage();
 		getPage();
 	}
@@ -216,11 +265,22 @@ function preRenderPage() {
 	var textContent = '';
 	textContent += `
 <header>
+
 <nav class="navbar fixed-top navbar-light bg-light">
-<a id="elementNavbarBrand" class="navbar-brand" href="">
+<a class="navbar-brand" href="">
+<div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <span id="logoChannel" class="letter-circle" title="` + currentChannelName + `">` + currentChannelName.charAt(0).toUpperCase() + `</span><span id="nameChannel"> ` + currentChannelName + `</span>
-<!-- <img id="logoBrand" src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="TViewer" alt="TViewer"><span id="nameBrand"> TViewer</span> -->
+</div>
+<div class="dropdown-menu" style="max-height:320px;width:auto;overflow:auto;">
+<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel">Add channel</button>
+<div class="dropdown-divider"> </div>
+<h6 class="dropdown-header">Select channel</h6>
+<div id="listChannel"></div>
+</div>
 </a>
+<!-- 
+<a id="elementNavbarBrand" class="navbar-brand" href=""><img id="logoBrand" src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="TViewer" alt="TViewer"><span id="nameBrand"> TViewer</span></a> 
+-->
 <div class="form-inline">
 <button id="elementPrevPage" class="btn bmd-btn-icon" type="button" title="Previous"><i class="material-icons">keyboard_arrow_left</i></button>
 <button id="elementNextPage" class="btn bmd-btn-icon" type="button" title="Next"><i class="material-icons">keyboard_arrow_right</i></button>
@@ -229,7 +289,6 @@ function preRenderPage() {
 <i class="material-icons">more_vert</i>
 </button>
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1" style="left:-150px">
-<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel">Add channel</button>
 <button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings">Settings</button>
 <div class="dropdown-divider"> </div>
 <button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout">About</button>
@@ -243,13 +302,38 @@ function preRenderPage() {
 
 	textContent += `
 <center>
-<div class="range-message">
+<div class="range-message" style="display: inline-flex;">
+
+
+<span style="width: 100%;">
 <input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="` + App.currentChannel.min + `" max="` + App.currentChannel.max + `" step="` + App.currentChannel.step + `" value="` + App.currentChannel.value + `">
+</span>
+
 </div>
 <main id="main" role="main" class="container-fluid"></main>
 </center>
 `;
 	$("#app").html(textContent);
+
+	var textListChannel = "";
+	for (i = 0; i < App.channels.length; i++) {
+		textListChannel += '<button class="dropdown-item list-channel-item" type="button">' + App.channels[i].name + '</button>';
+	}
+	$("#listChannel").html(textListChannel);
+
+	var listChannelItem = $('.list-channel-item');
+	listChannelItem.click(function (event) {
+		var nameChannel = $(this).text();
+		App.currentChannel = App.channels[searchChannelInArray(App.channels, nameChannel, 'name')];
+		var currentChannelName = App.currentChannel.name;
+		var logoChannel = $('#logoChannel');
+		logoChannel.attr('title', currentChannelName);
+		logoChannel.text(currentChannelName.charAt(0).toUpperCase());
+		$('#nameChannel').text(' ' + currentChannelName);
+		setRangeMessage();
+		getPage();
+		//my_ga('send', 'event', 'selectChannel: ' + nameChannel, 'click', 'listChannelItem');
+	});
 
 }
 
@@ -344,6 +428,9 @@ $(document).ready(function(){
 		//my_ga('send', 'event', 'getNextPage', 'click', 'elementNextPage');
 	});
 
+	$(".navbar-brand").click(function (event) {
+		event.preventDefault();
+	});
 	$("#btnDialogAddChannel").click(function (event) {
 		renderDialogAddChannel();
 		//my_ga('send', 'event', 'renderDialogAddChannel', 'click', 'btnDialogAddChannel');
@@ -402,16 +489,18 @@ $(document).ready(function(){
 
 	try {
 		addOnWheel(document, function (event) {
-			var delta = event.deltaY || event.detail || event.wheelDelta;
-			if (delta > 0) {
-				getNextPage();
-				//my_ga('send', 'event', 'getNextPage', 'wheel', 'document');
+			if (event.target.className == "posts") {
+				var delta = event.deltaY || event.detail || event.wheelDelta;
+				if (delta > 0) {
+					getNextPage();
+					//my_ga('send', 'event', 'getNextPage', 'wheel', 'document');
+				}
+				else {
+					getPrevPage();
+					//my_ga('send', 'event', 'getPrevPage', 'wheel', 'document');
+				}
+				event.preventDefault();
 			}
-			else {
-				getPrevPage();
-				//my_ga('send', 'event', 'getPrevPage', 'wheel', 'document');
-			}
-			event.preventDefault();
 		});
 	}
 	catch (e) {
