@@ -326,7 +326,7 @@ function renderDialogAbout() {
 function preRenderPage() {
 	var textContent = `
 <header>
-<nav class="navbar fixed-top navbar-light bg-light">
+<nav class="my-navbar navbar fixed-top navbar-light bg-light">
 <a class="navbar-brand" href="">
 <!-- <div class="dropdown-toggle my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 <div class="my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -378,12 +378,21 @@ function getPage() {
 			textContent +='<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
 		}
 		textContent +='</div>';
+		textContent +='<div class="my-pagination"><div id="elementPrevPageFooter">Previous</div><div id="elementNextPageFooter">Next</div></div>';
 		$("#main").html(textContent);
 		$("#rangeMessage")[0].value = App.currentChannel.value;
 		$(".range-message").show();
 		$('body').bootstrapMaterialDesign();
 		document.title = '' + App.currentChannel.name + ' - ' + App.currentHash;
 		location.hash = '#' + App.currentHash;
+		$("#elementPrevPageFooter").click(function (event) {
+			getPrevPage();
+			my_ga('send', 'event', 'getPrevPage', 'click', 'elementPrevPageFooter');
+		});
+		$("#elementNextPageFooter").click(function (event) {
+			getNextPage();
+			my_ga('send', 'event', 'getNextPage', 'click', 'elementNextPageFooter');
+		});
 	} else {
 		App.currentHash = '';
 		var textInformationMessage = (App.channels.length > 0) ? 'Select channel to view' : 'No channels to view';
