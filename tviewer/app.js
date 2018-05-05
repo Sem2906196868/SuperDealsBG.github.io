@@ -275,8 +275,18 @@ function renderDialogSettings() {
 		$('#modalDialog').html('');
 	});
 	$('#btnDialogSettingsSave').click(function (event) {
-		alert('modalDialogSettingsSave');
-		//TODO Save settings...
+
+		//TODO add validation value settings...
+
+		App.step = parseInt($('#appStep').val());
+		if (!$.isEmptyObject(App.currentChannel)) {
+			App.currentChannel.min = parseInt($('#currentChannelMin').val());
+			App.currentChannel.max = parseInt($('#currentChannelMax').val());
+			App.currentChannel.value = parseInt($('#currentChannelValue').val());
+			App.currentHash = App.currentChannel.value;
+			location.hash = '#' + App.currentHash;
+		}
+		setAppCashe();
 		my_ga('send', 'event', 'renderDialogSettingsSave', 'click', 'btnDialogSettingsSave');
 	});
 }
@@ -387,6 +397,7 @@ function getPage() {
 		document.title = '' + App.name;
 		location.hash = '';
 	}
+	setAppCashe();
 }
 
 function addOnWheel(elem, handler) {
@@ -408,13 +419,37 @@ function addOnWheel(elem, handler) {
 	}
 }
 
+function setAppCashe() {
+	try {
+		var strAppCashe = localStorage.getItem('App');
+		var strAppCurrent = JSON.stringify(App)
+		if (strAppCashe !== strAppCurrent) {
+			localStorage.setItem('App', strAppCurrent);
+		}
+	} catch (e) {
+		console.log(e);
+	}
+}
+function getAppCashe() {
+	try {
+		var strAppCashe = localStorage.getItem('App');
+		if (strAppCashe != null) {
+			App = JSON.parse(strAppCashe);
+		}
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 function my_ga(a, b, c, d, e) {
 	//ga(a, b, c, d, e);
 }
 
 $(document).ready(function(){
 
-	//TODO add search channel, render start page if channel empty...
+	getAppCashe();
+
+	//TODO add search channel...
 
 	var isRandomMessage = false;
 	if (window.location.hash != '') {
