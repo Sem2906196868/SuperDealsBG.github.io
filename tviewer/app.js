@@ -47,10 +47,10 @@ function searchElementIndexInArray(array, searchFor, property) {
 function renderLogoApp(element) {
 	if (!$.isEmptyObject(App.currentChannel)) {
 		var currentChannelName = App.currentChannel.name;
-		$(element).html('<span class="letter-circle" title="' + currentChannelName + '">' + currentChannelName.charAt(0).toUpperCase() + '</span> ' + currentChannelName);
+		$(element).html('<span class="letter-circle" title="' + currentChannelName + '">' + currentChannelName.charAt(0).toUpperCase() + '</span><span class="logo-app">' + currentChannelName + '</span>');
 	} else {
 		var currentAppName = App.name;
-		$(element).html('<img src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"> ' + currentAppName);
+		$(element).html('<img src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
 	}
 }
 function renderListChannel() {
@@ -82,7 +82,7 @@ function renderListChannel() {
 
 function toggleDeleteChannel() {
 	if (!$.isEmptyObject(App.currentChannel)) {
-		$("#deleteChannel").html('<button id="btnDeleteChannel" type="button" class="dropdown-item">Delete channel</button>');
+		$("#deleteChannel").html('<button id="btnDeleteChannel" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">delete</i> Delete channel</button>');
 		$('#btnDeleteChannel').click(function (event) {
 			deleteCurrentChannel();
 			my_ga('send', 'event', 'deleteCurrentChannel', 'click', 'btnDeleteChannel');
@@ -226,8 +226,8 @@ function renderDialogSettings() {
 </button>
 </div>
 <div class="modal-body">
-<div id="logoAppDialog" class="logo-app"></div>
-<br/><br/>
+<div id="logoAppDialog"></div>
+<br/>
 <form>
 <div class="form-group">
 <label for="appStep" class="bmd-label-floating">Step messages</label>
@@ -328,16 +328,17 @@ function preRenderPage() {
 <header>
 <nav class="navbar fixed-top navbar-light bg-light">
 <a class="navbar-brand" href="">
-<div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<div id="logoApp" class="logo-app"></div>
+<!-- <div class="dropdown-toggle my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<div class="my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div id="logoApp"></div>
 </div>
 <div id="dropdownMenuChannel" class="dropdown-menu">
-<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel">Add channel</button>
+<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
 <div id="deleteChannel"></div>
-<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings">Settings</button>
+<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
 <div id="listChannel"></div>
 <div class="dropdown-divider"> </div>
-<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout">About</button>
+<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
 </div>
 </a>
 <div class="form-inline">
@@ -347,12 +348,14 @@ function preRenderPage() {
 </nav>
 </header>
 <div id="modalDialog"></div>
+<div id="mainPage">
 <center>
 <div class="range-message">
 <input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="` + App.currentChannel.min + `" max="` + App.currentChannel.max + `" step="` + App.step + `" value="` + App.currentChannel.value + `">
 </div>
 <main id="main" role="main" class="container-fluid"></main>
 </center>
+</div>
 `;
 	$("#app").html(textContent);
 	renderLogoApp('#logoApp');
