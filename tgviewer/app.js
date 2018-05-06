@@ -47,10 +47,10 @@ function searchElementIndexInArray(array, searchFor, property) {
 function renderLogoApp(element) {
 	if (!$.isEmptyObject(App.currentChannel)) {
 		var currentChannelName = App.currentChannel.name;
-		$(element).html('<span class="letter-circle" title="' + currentChannelName + '">' + currentChannelName.charAt(0).toUpperCase() + '</span><span class="logo-app">' + currentChannelName + '</span>');
+		$(element).html('<span class="letter-circle" title="' + currentChannelName + '">' + currentChannelName.substr(0, 2).toUpperCase() + '</span><span class="logo-app">' + currentChannelName + '</span>');
 	} else {
 		var currentAppName = App.name;
-		$(element).html('<img src="telegram.svg" width="30" height="30" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
+		$(element).html('<img src="telegram.svg" width="32" height="32" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
 	}
 }
 function renderListChannel() {
@@ -59,13 +59,14 @@ function renderListChannel() {
 		textListChannel += '<div class="dropdown-divider"> </div>';
 		textListChannel += '<h6 class="dropdown-header">Select channel</h6>';
 		for (i = 0; i < App.channels.length; i++) {
-			textListChannel += '<button class="dropdown-item list-channel-item" type="button">' + App.channels[i].name + '</button>';
+			var currentChannelName = App.channels[i].name;
+			textListChannel += '<button class="dropdown-item list-channel-item" type="button"><span class="letter-circle logo-channel" title="' + currentChannelName + '">' + currentChannelName.substr(0, 2).toUpperCase() + '</span><span class="name-channel">' + currentChannelName + '</span></button>';
 		}
 		$("#listChannel").html(textListChannel);
 		if (textListChannel != '') {
 			var listChannelItem = $('.list-channel-item');
 			listChannelItem.click(function (event) {
-				var nameChannel = $(this).text();
+				var nameChannel = $(this).find('.logo-channel').attr('title');
 				App.currentChannel = App.channels[searchElementIndexInArray(App.channels, nameChannel, 'name')];
 				renderLogoApp('#logoApp');
 				toggleDeleteChannel();
@@ -335,9 +336,8 @@ function preRenderPage() {
 <header>
 <nav class="my-navbar navbar fixed-top navbar-light bg-light">
 <a class="navbar-brand" href="">
-<!-- <div class="dropdown-toggle my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
 <div class="my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<div id="logoApp"></div>
+<div id="menuApp"><i class="material-icons">menu</i></div><div id="logoApp"></div>
 </div>
 <div id="dropdownMenuChannel" class="dropdown-menu">
 <button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
@@ -358,12 +358,23 @@ function preRenderPage() {
 <div id="mainPage">
 <center>
 <div class="range-message">
+`;
+	if (!$.isEmptyObject(App.currentChannel)) {
+		textContent += `
 <input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="` + App.currentChannel.min + `" max="` + App.currentChannel.max + `" step="` + App.step + `" value="` + App.currentChannel.value + `">
+`;
+	} else {
+		textContent += `
+<input type="range" name="rangeMessage" id="rangeMessage" oninput="getStartMessage();" onchange="getPage();" min="1" max="1" step="1" value="1">
+`;
+	}
+	textContent += `
 </div>
 <main id="main" role="main" class="container-fluid"></main>
 </center>
 </div>
 `;
+
 	$("#app").html(textContent);
 	renderLogoApp('#logoApp');
 	renderListChannel();
@@ -384,12 +395,12 @@ function getPage() {
 			//textContent += '<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
 			textContent += '<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
 		}
+		textContent += '<div class="posts-footer"></div>';
 		textContent += '</div>';
 		textContent += `
 <nav class="my-pagination">
 <ul class="pagination justify-content-center">
 <li class="page-item"><span id="elementPrevPageFooter" class="page-link">Previous</span></li>
-<li class="page-item"><span id="elementPrevNextDivider" class="page-link-disabled">|</span></li>
 <li class="page-item"><span id="elementNextPageFooter" class="page-link">Next</span></li>
 </ul>
 </nav>
@@ -587,7 +598,7 @@ $(document).ready(function(){
 
 	try {
 		addOnWheel(document, function (event) {
-			if (event.target.className == "posts") {
+			if (event.target.className == "posts" || event.target.className == "posts-footer") {
 				var delta = event.deltaY || event.detail || event.wheelDelta;
 				if (delta > 0) {
 					getNextPage();
