@@ -79,6 +79,7 @@ iframe:hover {
 }
 .my-navbar {
 	z-index: 2;
+	min-width: 320px;
 }
 .my-dropdown-toggle {
 	height: 42px;
