@@ -1,6 +1,6 @@
 ﻿var App = {};
-App.name = 'TViewer';
-App.step = 5;
+App.name = 'TGViewer';
+App.step = 6;
 App.channels = [];
 App.currentChannel = {};
 App.currentHash = '';
@@ -197,7 +197,6 @@ function renderDialogAddChannel() {
 	$('#modalDialog').html(textDialog);
 	var searchChannel = $('#searchChannel');
 	var btnAddChannel = $('.btnAddChannel');
-	searchChannel.focus();
 	btnAddChannel.click(function (event) {
 		var nameChannel = $(this).text();
 		event.preventDefault();
@@ -206,6 +205,10 @@ function renderDialogAddChannel() {
 		btnAddChannel.blur();
 		my_ga('send', 'event', 'searchChannel: ' + nameChannel, 'click', 'btnAddChannel');
 	});
+	$('#modalDialogAddChannel').on('shown.bs.modal', function (e) {
+		searchChannel.trigger('focus');
+		searchChannel.select();
+	});	
 	$('#modalDialogAddChannel').on('hidden.bs.modal', function (e) {
 		$('#modalDialog').html('');
 	});	
@@ -228,18 +231,18 @@ function renderDialogSettings() {
 <div class="modal-body">
 <div id="logoAppDialog"></div>
 <br/>
-<form>
+<div>
 <div class="form-group">
 <label for="appStep" class="bmd-label-floating">Step messages</label>
 <input type="number" class="form-control" id="appStep" name="appStep" min="1" max="10" step="1" value="` + App.step + `">
 <span class="bmd-help">App step messages</span>
 </div>
-</form>
+</div>
 `;
 	if (!$.isEmptyObject(App.currentChannel)) {
 		var currentChannelName = App.currentChannel.name;
 		textDialog +=`
-<form>
+<div>
 <div class="form-group">
 <label for="currentChannelMin" class="bmd-label-floating">Min message</label>
 <input type="number" class="form-control" id="currentChannelMin" name="currentChannelMin" min="1" value="` + App.currentChannel.min + `">
@@ -255,7 +258,7 @@ function renderDialogSettings() {
 <input type="number" class="form-control" id="currentChannelValue" name="currentChannelValue" min="1" value="` + App.currentChannel.value + `">
 <span class="bmd-help">` + currentChannelName + ` channel current message</span>
 </div>
-</form>
+</div>
 `;
 	}
 	textDialog +=`
@@ -271,6 +274,10 @@ function renderDialogSettings() {
 	$('#modalDialog').html(textDialog);
 	renderLogoApp('#logoAppDialog');
 	$('#modalDialog').bootstrapMaterialDesign();
+	$('#modalDialogSettings').on('shown.bs.modal', function (e) {
+		$('#appStep').trigger('focus');
+		$('#appStep').select();
+	});	
 	$('#modalDialogSettings').on('hidden.bs.modal', function (e) {
 		$('#modalDialog').html('');
 	});
@@ -374,11 +381,19 @@ function getPage() {
 		var textContent = '';
 		textContent += '<div class="posts">';
 		for (var i = 0; i < App.step; i++) {
-			//textContent +='<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
-			textContent +='<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
+			//textContent += '<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
+			textContent += '<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
 		}
-		textContent +='</div>';
-		textContent +='<div class="my-pagination"><div id="elementPrevPageFooter">Previous</div><div id="elementNextPageFooter">Next</div></div>';
+		textContent += '</div>';
+		textContent += `
+<nav class="my-pagination">
+<ul class="pagination justify-content-center">
+<li class="page-item"><span id="elementPrevPageFooter" class="page-link">Previous</span></li>
+<li class="page-item"><span id="elementPrevNextDivider" class="page-link-disabled">|</span></li>
+<li class="page-item"><span id="elementNextPageFooter" class="page-link">Next</span></li>
+</ul>
+</nav>
+`;
 		$("#main").html(textContent);
 		$("#rangeMessage")[0].value = App.currentChannel.value;
 		$(".range-message").show();
@@ -429,6 +444,15 @@ function addOnWheel(elem, handler) {
 	else { // IE8-
 		//elem.attachEvent("onmousewheel", handler);
 	}
+}
+
+function setMenuHeight() {
+	var menuHeight = 260;
+	try {
+		menuHeight = window.innerHeight - 60;
+	} catch (e) {
+	}
+	$('#dropdownMenuChannel').css('max-height', menuHeight);
 }
 
 function setAppCashe() {
@@ -503,6 +527,7 @@ $(document).ready(function(){
 
 	$(".navbar-brand").click(function (event) {
 		event.preventDefault();
+		setMenuHeight();
 	});
 	$("#btnDialogAddChannel").click(function (event) {
 		renderDialogAddChannel();
@@ -595,4 +620,8 @@ $(document).keydown(function (event) {
 		getNextPage();
 		my_ga('send', 'event', 'getNextPage', 'keydown', 'document');
 	}
+});
+
+$(window).resize(function() {
+	setMenuHeight();
 });

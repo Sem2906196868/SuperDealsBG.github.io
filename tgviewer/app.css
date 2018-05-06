@@ -45,8 +45,9 @@ iframe:hover {
 	font-size: 20px;
 }
 #dropdownMenuChannel {
-	max-height: 260px;
 	min-width: 280px;
+	max-height: 260px;
+	height: auto;
 	overflow: auto;	
 }
 .my-navbar {
@@ -63,10 +64,9 @@ iframe:hover {
 	display: block;
 	padding: 16px;
 }
-#elementPrevPageFooter, #elementNextPageFooter {
+#elementPrevPageFooter, #elementNextPageFooter, #elementPrevNextDivider {
 	display: inline;
 	padding: 16px;
-	cursor: pointer;
 }
 
 .range-message {
