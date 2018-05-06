@@ -56,7 +56,6 @@ function renderLogoApp(element) {
 function renderListChannel() {
 	if (App.channels.length > 0) {
 		var textListChannel = '';
-		textListChannel += '<div class="dropdown-divider"> </div>';
 		textListChannel += '<h6 class="dropdown-header">Select channel</h6>';
 		for (i = 0; i < App.channels.length; i++) {
 			var currentChannelName = App.channels[i].name;
@@ -76,7 +75,7 @@ function renderListChannel() {
 			});
 		}
 	} else {
-		$("#listChannel").html('');
+		$("#listChannel").html('<h6 class="dropdown-header">Add channels to select</h6>');
 	}
 	toggleDeleteChannel();
 }
@@ -340,17 +339,23 @@ function preRenderPage() {
 <div id="menuApp"><i class="material-icons">menu</i></div><div id="logoApp"></div>
 </div>
 <div id="dropdownMenuChannel" class="dropdown-menu">
-<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
-<div id="deleteChannel"></div>
-<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
 <div id="listChannel"></div>
-<div class="dropdown-divider"> </div>
-<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
 </div>
 </a>
 <div class="form-inline">
-<button id="elementPrevPage" class="btn bmd-btn-icon" type="button" title="Previous"><i class="material-icons">keyboard_arrow_left</i></button>
-<button id="elementNextPage" class="btn bmd-btn-icon" type="button" title="Next"><i class="material-icons">keyboard_arrow_right</i></button>
+<div class="dropdown pull-xs-right">
+<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="lr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<i class="material-icons">more_vert</i>
+</button>
+<div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
+<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
+<div id="deleteChannel"></div>
+<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
+<div class="dropdown-divider"> </div>
+<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
+</div>
+</div>
+
 </div>
 </nav>
 </header>
@@ -424,7 +429,7 @@ function getPage() {
 		var textInformationMessage = (App.channels.length > 0) ? 'Select channel to view' : 'No channels to view';
 		var textContent = `
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
-<img src="telegram.svg" width="120" height="120" class="img-fluid rounded" alt="TViewer">
+<img src="telegram.svg" width="120" height="120" class="img-fluid rounded" alt="` + App.name + `">
 <br/><br/>
 <p>` + textInformationMessage + `</p>
 <div>
@@ -522,19 +527,6 @@ $(document).ready(function(){
 
 	preRenderPage();
 	getPage();
-
-	var elementPrevPage = $("#elementPrevPage");
-	elementPrevPage.click(function (event) {
-		getPrevPage();
-		elementPrevPage.blur();
-		my_ga('send', 'event', 'getPrevPage', 'click', 'elementPrevPage');
-	});
-	var elementNextPage = $("#elementNextPage");
-	elementNextPage.click(function (event) {
-		getNextPage();
-		elementNextPage.blur();
-		my_ga('send', 'event', 'getNextPage', 'click', 'elementNextPage');
-	});
 
 	$(".navbar-brand").click(function (event) {
 		event.preventDefault();

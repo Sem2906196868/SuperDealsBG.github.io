@@ -18,7 +18,12 @@ iframe:hover {
 
 .navbar-brand {
 	height: 42px;
-	width: 200px;
+	width: auto;
+}
+#rightDropdownMenuApp {
+	top: 40px;
+	left: -256px;	
+	min-width: 280px;
 }
 #menuApp {
 	display: inline-block;
@@ -47,7 +52,7 @@ iframe:hover {
 }
 .logo-channel {
 	margin-right: 12px;
-	padding-top: 5px;
+	padding-top: 6px;
 	margin-left: -4px;
 }
 .letter-circle {
@@ -74,6 +79,9 @@ iframe:hover {
 }
 .my-navbar {
 	z-index: 2;
+}
+.my-dropdown-toggle {
+	height: 42px;
 }
 .my-dropdown-toggle::after {
 	display: inline;
