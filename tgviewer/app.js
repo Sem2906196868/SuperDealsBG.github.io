@@ -71,7 +71,7 @@ function renderListChannel() {
 				toggleDeleteChannel();
 				setRangeMessage();
 				getPage();
-				//my_ga('send', 'event', 'selectChannel: ' + nameChannel, 'click', 'listChannelItem');
+				my_ga('send', 'event', 'selectChannel: ' + nameChannel, 'click', 'listChannelItem');
 			});
 		}
 	} else {
@@ -120,9 +120,45 @@ function addCurrentChannelSettings(currentChannelName) {
 	}
 	App.currentChannel = {name: nameValue, min: minValue, max: maxValue, value: minValue};
 }
+
+
+function getSanitizeValue(value){
+	var sanitizeValue = '';
+	sanitizeValue = $('<div/>').html(value)
+		.text()
+		.replace('tg://resolve?domain=', '')
+		.split('&', 1);
+	sanitizeValue = $('<div/>').html(sanitizeValue)
+		.text()
+		.replace('http://t.me/', '')
+		.replace('https://t.me/', '')
+		.replace('http://telegram.me/', '')
+		.replace('https://telegram.me/', '')
+		.split('/', 1);
+	sanitizeValue = $('<div/>').html(sanitizeValue)
+		.text()
+		.replace(/<script>/ig, '')
+		.replace(/<script /ig, '')
+		.replace(/<\/script>/ig, '')
+		.replace(/javascript:/ig, '')
+		.replace(/["'`!@#%&=:;, .*+?^${}()|[\]\\\/]/g, '')
+		.trim();
+	return sanitizeValue;
+}
+function getNumberValue(value){
+	var numberValue = parseInt(value, 10);
+	if (isNaN(numberValue)) {
+		numberValue = 1;
+	}
+	if (numberValue < 1) {
+		numberValue = 1;
+	}
+	return numberValue;	
+}
+
 function getCurrentChannel() {
-	var searchChannel = $('#searchChannel')[0];
-	var searchText = searchChannel.value;
+	var searchChannel = $('#searchChannel');
+	var searchText = getSanitizeValue(searchChannel.val());
 	if (searchText != '') {
 		var searchElementIndex = searchElementIndexInArray(App.channels, searchText, 'name');
 		if (searchElementIndex == -1) {
@@ -131,7 +167,7 @@ function getCurrentChannel() {
 		} else {
 			App.currentChannel = App.channels[searchElementIndex];
 		}
-		searchChannel.value = '';
+		searchChannel.val('');
 		searchText = '';
 		renderLogoApp('#logoApp');
 		renderListChannel();
@@ -282,14 +318,21 @@ function renderDialogSettings() {
 		$('#modalDialog').html('');
 	});
 	$('#btnDialogSettingsSave').click(function (event) {
-
-		//TODO add validation value settings...
-
-		App.step = parseInt($('#appStep').val());
+		var App_step = getNumberValue($('#appStep').val());
+		App_step = (App_step < 1) ? 1 : App_step;
+		App_step = (App_step > 10) ? 10 : App_step;
+		App.step = App_step;
 		if (!$.isEmptyObject(App.currentChannel)) {
-			App.currentChannel.min = parseInt($('#currentChannelMin').val());
-			App.currentChannel.max = parseInt($('#currentChannelMax').val());
-			App.currentChannel.value = parseInt($('#currentChannelValue').val());
+			var App_currentChannel_min = getNumberValue($('#currentChannelMin').val());
+			var App_currentChannel_max = getNumberValue($('#currentChannelMax').val());
+			var App_currentChannel_value = getNumberValue($('#currentChannelValue').val());
+			App_currentChannel_min = (App_currentChannel_min > App_currentChannel_max) ? App_currentChannel_max : App_currentChannel_min;
+			App_currentChannel_max = (App_currentChannel_max < App_currentChannel_min) ? App_currentChannel_min : App_currentChannel_max;
+			App_currentChannel_value = (App_currentChannel_value < App_currentChannel_min) ? App_currentChannel_min : App_currentChannel_value;
+			App_currentChannel_value = (App_currentChannel_value > App_currentChannel_max) ? App_currentChannel_max : App_currentChannel_value;
+			App.currentChannel.min = App_currentChannel_min;
+			App.currentChannel.max = App_currentChannel_max;
+			App.currentChannel.value = App_currentChannel_value;
 			App.currentHash = App.currentChannel.value;
 			location.hash = '#' + App.currentHash;
 		}
@@ -414,7 +457,7 @@ function getPage() {
 		$("#rangeMessage")[0].value = App.currentChannel.value;
 		$(".range-message").show();
 		$('body').bootstrapMaterialDesign();
-		document.title = '' + App.currentChannel.name + ' - ' + App.currentHash;
+		document.title = '' + App.currentChannel.name + ' - ' + App.currentHash + ' - ' + App.name;
 		location.hash = '#' + App.currentHash;
 		$("#elementPrevPageFooter").click(function (event) {
 			getPrevPage();
