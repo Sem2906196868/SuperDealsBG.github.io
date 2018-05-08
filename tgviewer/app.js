@@ -5,8 +5,6 @@ App.step = 6;
 App.channels = [];
 App.currentChannel = {};
 
-
-
 function getRandomMessage() {
 	if (!$.isEmptyObject(App.currentChannel)) {
 		App.currentChannel.value = Math.floor(Math.random() * (App.currentChannel.max - App.currentChannel.min + 1)) + App.currentChannel.min;
@@ -53,6 +51,7 @@ function renderLogoApp(element) {
 		$(element).html('<img src="telegram.svg" width="32" height="32" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
 	}
 }
+
 function renderListChannel() {
 	if (App.channels.length > 0) {
 		var textListChannel = '';
@@ -99,6 +98,7 @@ function renderViewType() {
 		$("#btnViewType").html('<i class="material-icons my-icon-dropdown">view_module</i> Table view');
 	}
 }
+
 function toggleViewType() {
 	App.viewType = (App.viewType == 'table') ? 'list' : 'table';
 	renderViewType();
@@ -133,7 +133,6 @@ function addCurrentChannelSettings(currentChannelName) {
 	App.currentChannel = {name: nameValue, min: minValue, max: maxValue, value: minValue};
 }
 
-
 function getSanitizeValue(value){
 	var sanitizeValue = '';
 	sanitizeValue = $('<div/>').html(value)
@@ -157,6 +156,7 @@ function getSanitizeValue(value){
 		.trim();
 	return sanitizeValue;
 }
+
 function getNumberValue(value){
 	var numberValue = parseInt(value, 10);
 	if (isNaN(numberValue)) {
@@ -183,6 +183,18 @@ function getCurrentChannelSearch(currentSearch) {
 			}
 		}
 		if (!$.isEmptyObject(App.currentChannel)) {
+			if (currentSearch.hasOwnProperty('step')) {
+				App.step = getNumberValue(getSanitizeValue(currentSearch.step));
+			}
+			if (currentSearch.hasOwnProperty('view')) {
+				App.viewType = getSanitizeValue(currentSearch.view);
+			}
+			if (currentSearch.hasOwnProperty('min')) {
+				App.currentChannel.min = getNumberValue(getSanitizeValue(currentSearch.min));
+			}
+			if (currentSearch.hasOwnProperty('max')) {
+				App.currentChannel.max = getNumberValue(getSanitizeValue(currentSearch.max));
+			}
 			if (currentSearch.hasOwnProperty('post')) {
 				App.currentChannel.value = getNumberValue(getSanitizeValue(currentSearch.post));
 			} else {
@@ -191,6 +203,7 @@ function getCurrentChannelSearch(currentSearch) {
 		}
 	}
 }
+
 function getCurrentChannelAdd() {
 	var searchChannel = $('#searchChannel');
 	var searchText = getSanitizeValue(searchChannel.val());
@@ -243,6 +256,7 @@ function getTextSearchChannel() {
 </span>
 `;
 }
+
 function renderDialogAddChannel() {
 	var textDialog = `
 <div class="modal fade" id="modalDialogAddChannel" tabindex="-1" role="dialog" aria-labelledby="modalDialogAddChannelLabel" aria-hidden="true">
@@ -288,6 +302,7 @@ function renderDialogAddChannel() {
 		my_ga('send', 'event', 'getCurrentChannelAdd', 'click', 'btnDialogAddChannelSave');
 	});
 }
+
 function renderDialogSettings() {
 	var textDialog = `
 <div class="modal fade" id="modalDialogSettings" tabindex="-1" role="dialog" aria-labelledby="modalDialogSettingsLabel" aria-hidden="true">
@@ -375,6 +390,7 @@ function renderDialogSettings() {
 		my_ga('send', 'event', 'renderDialogSettingsSave', 'click', 'btnDialogSettingsSave');
 	});
 }
+
 function renderDialogAbout() {
 	var textDialog = `
 <div class="modal fade" id="modalDialogAbout" tabindex="-1" role="dialog" aria-labelledby="modalDialogAboutLabel" aria-hidden="true">
@@ -426,7 +442,7 @@ function preRenderPage() {
 <i class="material-icons">more_vert</i>
 </button>
 <div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
-<button id="btnViewType" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">list</i> List view</button>
+<button id="btnViewType" type="button" class="dropdown-item"></button>
 <div class="dropdown-divider"> </div>
 <button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
 <div id="deleteChannel"></div>
@@ -477,7 +493,6 @@ function getPage() {
 		var textContent = '';
 		textContent += '<div class="posts">';
 		for (var i = 0; i < App.step; i++) {
-			//textContent += '<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
 			textContent += '<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="' + ((App.viewType == 'table') ? '10' : '100') + '%"></s' + 'cript>';
 		}
 		textContent += '<div class="posts-footer"></div>';
@@ -595,11 +610,8 @@ function document_ready() {
 
 	getAppCashe();
 
-	var locationSearch = window.location.search;
-	var searchParameters = {};
-	if (locationSearch != '') {
-		searchParameters = parseUrlQuery();
-		getCurrentChannelSearch(searchParameters);
+	if (window.location.search != '') {
+		getCurrentChannelSearch(parseUrlQuery());
 	}
 
 	preRenderPage();
@@ -671,7 +683,7 @@ function document_ready() {
 
 	try {
 		addOnWheel(document, function (event) {
-			if (event.target.className == "posts" || event.target.className == "posts-footer") {
+			if (event.target.className == "posts-footer") {
 				var delta = event.deltaY || event.detail || event.wheelDelta;
 				if (delta > 0) {
 					getNextPage();
@@ -702,7 +714,7 @@ $(document).keydown(function (event) {
 		getPrevPage();
 		my_ga('send', 'event', 'getPrevPage', 'keydown', 'document');
 	}
-	if (event.which == 38 || event.which == 36) {
+	if (event.which == 36) {
 		getRandomPage();
 		my_ga('send', 'event', 'getRandomPage', 'keydown', 'document');
 	}
