@@ -3,7 +3,6 @@ App.name = 'TGViewer';
 App.step = 6;
 App.channels = [];
 App.currentChannel = {};
-App.currentHash = '';
 
 
 
@@ -97,7 +96,6 @@ function deleteCurrentChannel(){
 		if (App.channels.length > 0) {
 			App.channels.splice(searchElementIndexInArray(App.channels, App.currentChannel.name, 'name'), 1);
 			App.currentChannel = {};
-			App.currentHash = '';
 			renderLogoApp('#logoApp');
 			renderListChannel();
 			getPage();
@@ -156,7 +154,23 @@ function getNumberValue(value){
 	return numberValue;	
 }
 
-function getCurrentChannel() {
+function getCurrentChannelSearch(currentSearch) {
+	if (!$.isEmptyObject(currentSearch)) {
+		if (currentSearch.hasOwnProperty('channel')) {
+			var searchText = getSanitizeValue(currentSearch.channel);
+			if (searchText != '') {
+				var searchElementIndex = searchElementIndexInArray(App.channels, searchText, 'name');
+				if (searchElementIndex == -1) {
+					addCurrentChannelSettings(searchText);
+					App.channels.push(App.currentChannel);
+				} else {
+					App.currentChannel = App.channels[searchElementIndex];
+				}
+			}
+		}
+	}
+}
+function getCurrentChannelAdd() {
 	var searchChannel = $('#searchChannel');
 	var searchText = getSanitizeValue(searchChannel.val());
 	if (searchText != '') {
@@ -249,8 +263,8 @@ function renderDialogAddChannel() {
 		$('#modalDialog').html('');
 	});	
 	$('#btnDialogAddChannelSave').click(function (event) {
-		getCurrentChannel();
-		my_ga('send', 'event', 'getCurrentChannel', 'click', 'btnDialogAddChannelSave');
+		getCurrentChannelAdd();
+		my_ga('send', 'event', 'getCurrentChannelAdd', 'click', 'btnDialogAddChannelSave');
 	});
 }
 function renderDialogSettings() {
@@ -333,8 +347,7 @@ function renderDialogSettings() {
 			App.currentChannel.min = App_currentChannel_min;
 			App.currentChannel.max = App_currentChannel_max;
 			App.currentChannel.value = App_currentChannel_value;
-			App.currentHash = App.currentChannel.value;
-			location.hash = '#' + App.currentHash;
+			getPage();
 		}
 		setAppCashe();
 		my_ga('send', 'event', 'renderDialogSettingsSave', 'click', 'btnDialogSettingsSave');
@@ -436,7 +449,6 @@ function getPage() {
 		if (App.currentChannel.value > App.currentChannel.max - App.step) {
 			App.currentChannel.max = App.currentChannel.value + App.step;
 		}
-		App.currentHash = App.currentChannel.value;
 		var textContent = '';
 		textContent += '<div class="posts">';
 		for (var i = 0; i < App.step; i++) {
@@ -457,8 +469,9 @@ function getPage() {
 		$("#rangeMessage")[0].value = App.currentChannel.value;
 		$(".range-message").show();
 		$('body').bootstrapMaterialDesign();
-		document.title = '' + App.currentChannel.name + ' - ' + App.currentHash + ' - ' + App.name;
-		location.hash = '#' + App.currentHash;
+		document.title = '' + App.currentChannel.name + ' - ' + App.currentChannel.value + ' - ' + App.name;
+		var locationHref = '' + location.pathname + '?channel=' + App.currentChannel.name + '&post=' + App.currentChannel.value + '#' + App.currentChannel.value;
+		history.pushState(null, null, locationHref);
 		$("#elementPrevPageFooter").click(function (event) {
 			getPrevPage();
 			my_ga('send', 'event', 'getPrevPage', 'click', 'elementPrevPageFooter');
@@ -468,7 +481,6 @@ function getPage() {
 			my_ga('send', 'event', 'getNextPage', 'click', 'elementNextPageFooter');
 		});
 	} else {
-		App.currentHash = '';
 		var textInformationMessage = (App.channels.length > 0) ? 'Select channel to view' : 'No channels to view';
 		var textContent = `
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
@@ -481,9 +493,22 @@ function getPage() {
 		$(".range-message").hide();
 		$('body').bootstrapMaterialDesign();
 		document.title = '' + App.name;
-		location.hash = '';
+		var locationHref = '' + location.pathname;
+		history.pushState(null, null, locationHref);
 	}
 	setAppCashe();
+}
+
+function parseUrlQuery() {
+	var currentSearch = {};
+	if (window.location.search) {
+		var pair = (window.location.search.substr(1)).split("&");
+		for (var i = 0; i < pair.length; i++) {
+			var param = pair[i].split("=");
+			currentSearch[param[0]] = param[1];
+		}
+	}
+	return currentSearch;
 }
 
 function addOnWheel(elem, handler) {
@@ -510,6 +535,7 @@ function setMenuHeight() {
 	try {
 		menuHeight = window.innerHeight - 60;
 	} catch (e) {
+		my_ga('send', 'event', 'setMenuHeight', 'Error', e);
 	}
 	$('#dropdownMenuChannel').css('max-height', menuHeight);
 }
@@ -522,7 +548,7 @@ function setAppCashe() {
 			localStorage.setItem('App', strAppCurrent);
 		}
 	} catch (e) {
-		console.log(e);
+		my_ga('send', 'event', 'setAppCashe', 'Error', e);
 	}
 }
 function getAppCashe() {
@@ -532,7 +558,7 @@ function getAppCashe() {
 			App = JSON.parse(strAppCashe);
 		}
 	} catch (e) {
-		console.log(e);
+		my_ga('send', 'event', 'getAppCashe', 'Error', e);
 	}
 }
 
@@ -540,18 +566,23 @@ function my_ga(a, b, c, d, e) {
 	//ga(a, b, c, d, e);
 }
 
-$(document).ready(function(){
+function document_ready() {
 
 	getAppCashe();
 
-	//TODO add search channel...
-
 	var isRandomMessage = false;
-	if (window.location.hash != '') {
+	var locationSearch = window.location.search;
+	var searchParameters = {};
+	if (locationSearch != '') {
+		searchParameters = parseUrlQuery();
+		getCurrentChannelSearch(searchParameters);
+	}
+	var locationHash = window.location.hash;
+	if (locationHash != '') {
 		try {
-			App.currentHash = parseInt((window.location.hash).replace("#", ""));
+			var currentHash = parseInt((locationHash).replace("#", ""));
 			if (!$.isEmptyObject(App.currentChannel)) {
-				App.currentChannel.value = App.currentHash;
+				App.currentChannel.value = currentHash;
 			}
 		} catch (e) {
 			isRandomMessage = true;
@@ -561,11 +592,6 @@ $(document).ready(function(){
 	}
 	if (isRandomMessage) {
 		getRandomMessage();
-		if (!$.isEmptyObject(App.currentChannel)) {
-			App.currentHash = App.currentChannel.value;
-		} else {
-			App.currentHash = '';
-		}
 	}
 
 	preRenderPage();
@@ -651,6 +677,12 @@ $(document).ready(function(){
 		my_ga('send', 'event', 'addOnWheel', 'Error-wheel', e);
 	}
 
+}
+
+$(document).ready(function(){
+
+	document_ready();
+
 }); 
 
 $(document).keydown(function (event) {
@@ -670,4 +702,10 @@ $(document).keydown(function (event) {
 
 $(window).resize(function() {
 	setMenuHeight();
+	my_ga('send', 'event', 'setMenuHeight', 'resize', 'window: (' + $(window).width() + 'x' + $(window).height() + ')');
+});
+
+$(window).on('popstate', function(e) {
+	document_ready();
+	my_ga('send', 'event', 'document_ready', 'popstate', 'window: ' + location.href);
 });
