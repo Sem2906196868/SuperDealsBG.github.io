@@ -1,5 +1,6 @@
 ﻿var App = {};
 App.name = 'TGViewer';
+App.viewType = 'table';
 App.step = 6;
 App.channels = [];
 App.currentChannel = {};
@@ -14,7 +15,7 @@ function getRandomMessage() {
 
 function getStartMessage() {
 	if (!$.isEmptyObject(App.currentChannel)) {
-		App.currentChannel.value = $('#rangeMessage')[0].valueAsNumber;
+		App.currentChannel.value = getNumberValue($('#rangeMessage').val());
 	}
 }
 
@@ -89,6 +90,19 @@ function toggleDeleteChannel() {
 	} else {
 		$("#deleteChannel").html('');
 	}
+}
+
+function renderViewType() {
+	if (App.viewType == 'table') {
+		$("#btnViewType").html('<i class="material-icons my-icon-dropdown">view_list</i> List view');
+	} else {
+		$("#btnViewType").html('<i class="material-icons my-icon-dropdown">view_module</i> Table view');
+	}
+}
+function toggleViewType() {
+	App.viewType = (App.viewType == 'table') ? 'list' : 'table';
+	renderViewType();
+	getPage();
 }
 
 function deleteCurrentChannel(){
@@ -166,6 +180,13 @@ function getCurrentChannelSearch(currentSearch) {
 				} else {
 					App.currentChannel = App.channels[searchElementIndex];
 				}
+			}
+		}
+		if (!$.isEmptyObject(App.currentChannel)) {
+			if (currentSearch.hasOwnProperty('post')) {
+				App.currentChannel.value = getNumberValue(getSanitizeValue(currentSearch.post));
+			} else {
+				getRandomMessage();
 			}
 		}
 	}
@@ -284,7 +305,7 @@ function renderDialogSettings() {
 <div>
 <div class="form-group">
 <label for="appStep" class="bmd-label-floating">Step messages</label>
-<input type="number" class="form-control" id="appStep" name="appStep" min="1" max="10" step="1" value="` + App.step + `">
+<input type="number" class="form-control" id="appStep" name="appStep" min="1" max="30" step="1" value="` + App.step + `">
 <span class="bmd-help">App step messages</span>
 </div>
 </div>
@@ -334,7 +355,7 @@ function renderDialogSettings() {
 	$('#btnDialogSettingsSave').click(function (event) {
 		var App_step = getNumberValue($('#appStep').val());
 		App_step = (App_step < 1) ? 1 : App_step;
-		App_step = (App_step > 10) ? 10 : App_step;
+		App_step = (App_step > 30) ? 30 : App_step;
 		App.step = App_step;
 		if (!$.isEmptyObject(App.currentChannel)) {
 			var App_currentChannel_min = getNumberValue($('#currentChannelMin').val());
@@ -347,6 +368,7 @@ function renderDialogSettings() {
 			App.currentChannel.min = App_currentChannel_min;
 			App.currentChannel.max = App_currentChannel_max;
 			App.currentChannel.value = App_currentChannel_value;
+			setRangeMessage();
 			getPage();
 		}
 		setAppCashe();
@@ -404,6 +426,8 @@ function preRenderPage() {
 <i class="material-icons">more_vert</i>
 </button>
 <div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
+<button id="btnViewType" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">list</i> List view</button>
+<div class="dropdown-divider"> </div>
 <button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
 <div id="deleteChannel"></div>
 <button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
@@ -439,6 +463,7 @@ function preRenderPage() {
 	$("#app").html(textContent);
 	renderLogoApp('#logoApp');
 	renderListChannel();
+	renderViewType();
 }
 
 function getPage() {
@@ -453,7 +478,7 @@ function getPage() {
 		textContent += '<div class="posts">';
 		for (var i = 0; i < App.step; i++) {
 			//textContent += '<iframe src="https://t.me/' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '?embed=1" scrolling="no" frameborder="0"></iframe>';
-			textContent += '<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="10%"></s' + 'cript>';
+			textContent += '<s' + 'cript async src="https://telegram.org/js/telegram-widget.js" data-telegram-post="' + App.currentChannel.name + '/' + (App.currentChannel.value + i) + '" data-width="' + ((App.viewType == 'table') ? '10' : '100') + '%"></s' + 'cript>';
 		}
 		textContent += '<div class="posts-footer"></div>';
 		textContent += '</div>';
@@ -466,11 +491,11 @@ function getPage() {
 </nav>
 `;
 		$("#main").html(textContent);
-		$("#rangeMessage")[0].value = App.currentChannel.value;
+		$("#rangeMessage").val(App.currentChannel.value);
 		$(".range-message").show();
 		$('body').bootstrapMaterialDesign();
 		document.title = '' + App.currentChannel.name + ' - ' + App.currentChannel.value + ' - ' + App.name;
-		var locationHref = '' + location.pathname + '?channel=' + App.currentChannel.name + '&post=' + App.currentChannel.value + '#' + App.currentChannel.value;
+		var locationHref = '' + location.pathname + '?channel=' + App.currentChannel.name + '&post=' + App.currentChannel.value;
 		history.pushState(null, null, locationHref);
 		$("#elementPrevPageFooter").click(function (event) {
 			getPrevPage();
@@ -570,28 +595,11 @@ function document_ready() {
 
 	getAppCashe();
 
-	var isRandomMessage = false;
 	var locationSearch = window.location.search;
 	var searchParameters = {};
 	if (locationSearch != '') {
 		searchParameters = parseUrlQuery();
 		getCurrentChannelSearch(searchParameters);
-	}
-	var locationHash = window.location.hash;
-	if (locationHash != '') {
-		try {
-			var currentHash = parseInt((locationHash).replace("#", ""));
-			if (!$.isEmptyObject(App.currentChannel)) {
-				App.currentChannel.value = currentHash;
-			}
-		} catch (e) {
-			isRandomMessage = true;
-		}
-	} else {
-		isRandomMessage = true;
-	}
-	if (isRandomMessage) {
-		getRandomMessage();
 	}
 
 	preRenderPage();
@@ -600,6 +608,10 @@ function document_ready() {
 	$(".navbar-brand").click(function (event) {
 		event.preventDefault();
 		setMenuHeight();
+	});
+	$("#btnViewType").click(function (event) {
+		toggleViewType();
+		my_ga('send', 'event', 'toggleViewType: ' + App.viewType, 'click', 'btnViewType');
 	});
 	$("#btnDialogAddChannel").click(function (event) {
 		renderDialogAddChannel();
