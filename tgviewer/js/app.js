@@ -48,7 +48,7 @@ function renderLogoApp(element) {
 		$(element).html('<span class="letter-circle" title="' + currentChannelName + '">' + currentChannelName.substr(0, 2).toUpperCase() + '</span><span class="logo-app">' + currentChannelName + '</span>');
 	} else {
 		var currentAppName = App.name;
-		$(element).html('<img src="telegram.svg" width="32" height="32" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
+		$(element).html('<img src="ico/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top" title="' + currentAppName + '" alt="' + currentAppName + '"><span class="logo-app">' + currentAppName + '</span>');
 	}
 }
 
@@ -430,7 +430,7 @@ function renderDialogAbout() {
 <center>
 <h4>` + App.name + `</h4>
 <br/>
-<img src="telegram.svg" width="120" height="120" class="img-fluid rounded" alt="` + App.name + `">
+<img src="ico/telegram.svg" width="120" height="120" class="img-fluid rounded" alt="` + App.name + `">
 <br/><br/>
 <p>Telegram public channel viewer</p>
 </center>
@@ -589,7 +589,7 @@ function getPage() {
 		var textInformationMessage = (App.channels.length > 0) ? 'Select channel to view' : 'No channels to view';
 		var textContent = `
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
-<img src="telegram.svg" width="120" height="120" class="img-fluid rounded" alt="` + App.name + `">
+<img src="ico/telegram.svg" width="120" height="120" class="img-fluid rounded" alt="` + App.name + `">
 <br/><br/>
 <p>` + textInformationMessage + `</p>
 <div>
@@ -669,7 +669,7 @@ function getAppCashe() {
 }
 
 function my_ga(a, b, c, d, e) {
-	//ga(a, b, c, d, e);
+	ga(a, b, c, d, e);
 }
 
 function document_ready() {
