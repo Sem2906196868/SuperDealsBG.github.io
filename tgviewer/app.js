@@ -81,7 +81,12 @@ function renderListChannel() {
 
 function toggleDeleteChannel() {
 	if (!$.isEmptyObject(App.currentChannel)) {
-		$("#deleteChannel").html('<button id="btnDeleteChannel" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">delete</i> Delete channel</button>');
+		var currentWidth = $(window).width();
+		if (currentWidth > 420) {
+			$("#deleteChannel").html('<button id="btnDeleteChannel" type="button" class="btn bmd-btn-icon" title="Delete current channel"><i class="material-icons">delete</i></button>');
+		} else {
+			$("#deleteChannel").html('<button id="btnDeleteChannel" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">delete</i> Delete channel</button>');
+		}
 		$('#btnDeleteChannel').click(function (event) {
 			deleteCurrentChannel();
 			my_ga('send', 'event', 'deleteCurrentChannel', 'click', 'btnDeleteChannel');
@@ -92,11 +97,30 @@ function toggleDeleteChannel() {
 }
 
 function renderViewType() {
-	if (App.viewType == 'table') {
-		$("#btnViewType").html('<i class="material-icons my-icon-dropdown">view_list</i> List view');
+	var currentWidth = $(window).width();
+	if (currentWidth > 420) {
+		if (App.viewType == 'table') {
+			$("#changeViewType").html('<button id="btnViewType" type="button" class="btn bmd-btn-icon" title="List view"><i class="material-icons">view_list</i></button>');
+		} else {
+			$("#changeViewType").html('<button id="btnViewType" type="button" class="btn bmd-btn-icon" title="Table view"><i class="material-icons">view_module</i></button>');
+		}
 	} else {
-		$("#btnViewType").html('<i class="material-icons my-icon-dropdown">view_module</i> Table view');
+		if (App.viewType == 'table') {
+			$("#changeViewType").html(`
+<button id="btnViewType" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">view_list</i> List view</button>
+<div id="btnViewTypeDivider" class="dropdown-divider"> </div>
+`);
+		} else {
+			$("#changeViewType").html(`
+<button id="btnViewType" type="button" class="dropdown-item"><i class="material-icons my-icon-dropdown">view_module</i> Table view</button>
+<div id="btnViewTypeDivider" class="dropdown-divider"> </div>
+`);
+		}
 	}
+	$("#btnViewType").click(function (event) {
+		toggleViewType();
+		my_ga('send', 'event', 'toggleViewType: ' + App.viewType, 'click', 'btnViewType');
+	});
 }
 
 function toggleViewType() {
@@ -424,6 +448,62 @@ function renderDialogAbout() {
 	});	
 }
 
+function renderRightMenuApp() {
+	var currentWidth = $(window).width();
+	if (currentWidth > 420) {
+		$("#rightMenuApp").html(`
+<div id="changeViewType"></div>
+<button id="btnDialogAddChannel" type="button" class="btn bmd-btn-icon" data-toggle="modal" data-target="#modalDialogAddChannel" title="Add new channel"><i class="material-icons">add</i></button>
+<div id="deleteChannel"></div>
+<div class="dropdown pull-xs-right">
+<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="lr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<i class="material-icons">more_vert</i>
+</button>
+<div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
+<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
+<div class="dropdown-divider"> </div>
+<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
+</div>
+</div>
+`);
+	} else {
+		$("#rightMenuApp").html(`
+<div class="dropdown pull-xs-right">
+<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="lr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<i class="material-icons">more_vert</i>
+</button>
+<div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
+<div id="changeViewType"></div>
+<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
+<div id="deleteChannel"></div>
+<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
+<div class="dropdown-divider"> </div>
+<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
+</div>
+</div>
+`);
+	}
+	renderViewType();
+	toggleDeleteChannel();
+	$('#btnDialogAddChannel').click(function (event) {
+		renderDialogAddChannel();
+		my_ga('send', 'event', 'renderDialogAddChannel', 'click', 'btnDialogAddChannel');
+	});
+	$('#btnDialogSettings').click(function (event) {
+		renderDialogSettings();
+		my_ga('send', 'event', 'renderDialogSettings', 'click', 'btnDialogSettings');
+	});
+	$('#btnDialogAbout').click(function (event) {
+		renderDialogAbout();
+		my_ga('send', 'event', 'renderDialogAbout', 'click', 'btnDialogAbout');
+	});		
+}
+
+function processScreenResizing() {
+	setMenuHeight();
+	renderRightMenuApp();	
+}
+
 function preRenderPage() {
 	var textContent = `
 <header>
@@ -432,27 +512,9 @@ function preRenderPage() {
 <div class="my-dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <div id="menuApp"><i class="material-icons">menu</i></div><div id="logoApp"></div>
 </div>
-<div id="dropdownMenuChannel" class="dropdown-menu">
-<div id="listChannel"></div>
-</div>
+<div id="dropdownMenuChannel" class="dropdown-menu"><div id="listChannel"></div></div>
 </a>
-<div class="form-inline">
-<div class="dropdown pull-xs-right">
-<button class="btn bmd-btn-icon dropdown-toggle" type="button" id="lr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<i class="material-icons">more_vert</i>
-</button>
-<div id="rightDropdownMenuApp" class="dropdown-menu dropdown-menu-right" aria-labelledby="lr1">
-<button id="btnViewType" type="button" class="dropdown-item"></button>
-<div class="dropdown-divider"> </div>
-<button id="btnDialogAddChannel" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAddChannel"><i class="material-icons my-icon-dropdown">add</i> Add channel</button>
-<div id="deleteChannel"></div>
-<button id="btnDialogSettings" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogSettings"><i class="material-icons my-icon-dropdown">settings</i> Settings</button>
-<div class="dropdown-divider"> </div>
-<button id="btnDialogAbout" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalDialogAbout"><i class="material-icons my-icon-dropdown">info</i> About</button>
-</div>
-</div>
-
-</div>
+<div id="rightMenuApp" class="form-inline"></div>
 </nav>
 </header>
 <div id="modalDialog"></div>
@@ -475,11 +537,14 @@ function preRenderPage() {
 </center>
 </div>
 `;
-
 	$("#app").html(textContent);
 	renderLogoApp('#logoApp');
 	renderListChannel();
-	renderViewType();
+	renderRightMenuApp();
+	$(".navbar-brand").click(function (event) {
+		event.preventDefault();
+		setMenuHeight();
+	});
 }
 
 function getPage() {
@@ -591,6 +656,7 @@ function setAppCashe() {
 		my_ga('send', 'event', 'setAppCashe', 'Error', e);
 	}
 }
+
 function getAppCashe() {
 	try {
 		var strAppCashe = localStorage.getItem('App');
@@ -616,27 +682,6 @@ function document_ready() {
 
 	preRenderPage();
 	getPage();
-
-	$(".navbar-brand").click(function (event) {
-		event.preventDefault();
-		setMenuHeight();
-	});
-	$("#btnViewType").click(function (event) {
-		toggleViewType();
-		my_ga('send', 'event', 'toggleViewType: ' + App.viewType, 'click', 'btnViewType');
-	});
-	$("#btnDialogAddChannel").click(function (event) {
-		renderDialogAddChannel();
-		my_ga('send', 'event', 'renderDialogAddChannel', 'click', 'btnDialogAddChannel');
-	});
-	$("#btnDialogSettings").click(function (event) {
-		renderDialogSettings();
-		my_ga('send', 'event', 'renderDialogSettings', 'click', 'btnDialogSettings');
-	});
-	$("#btnDialogAbout").click(function (event) {
-		renderDialogAbout();
-		my_ga('send', 'event', 'renderDialogAbout', 'click', 'btnDialogAbout');
-	});
 
 	var initialPoint = undefined;
 	var finalPoint = undefined;
@@ -725,8 +770,8 @@ $(document).keydown(function (event) {
 });
 
 $(window).resize(function() {
-	setMenuHeight();
-	my_ga('send', 'event', 'setMenuHeight', 'resize', 'window: (' + $(window).width() + 'x' + $(window).height() + ')');
+	processScreenResizing();
+	my_ga('send', 'event', 'processScreenResizing', 'resize', 'window: (' + $(window).width() + 'x' + $(window).height() + ')');
 });
 
 $(window).on('popstate', function(e) {

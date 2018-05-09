@@ -1,11 +1,11 @@
 ﻿iframe {
 	z-index: 0;
 	margin-left: -16px;
-	-o-transform: rotate(-3deg);
-	-ms-transform: rotate(-3deg);
-	-moz-transform: rotate(-3deg);
-	-webkit-transform: rotate(-3deg);
-	transform: rotate(-3deg);
+	-o-transform: rotate(-1deg);
+	-ms-transform: rotate(-1deg);
+	-moz-transform: rotate(-1deg);
+	-webkit-transform: rotate(-1deg);
+	transform: rotate(-1deg);
 }
 iframe:hover {
 	z-index: 1;
