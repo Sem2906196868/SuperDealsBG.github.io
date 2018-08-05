@@ -355,7 +355,7 @@ function progressRefresh() {
 }
 
 function getTextScryptLD(item_title, currentImage, item_search, offer) {
-	var dateModified = new Date;
+	var dateModified = new Date();
 	var datePublished = dateModified;
 	datePublished = datePublished.setMilliseconds(datePublished.getMilliseconds() - 3600);
 	var textScryptLD = '';
