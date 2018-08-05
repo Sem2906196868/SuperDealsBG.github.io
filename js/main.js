@@ -354,6 +354,40 @@ function progressRefresh() {
 	});
 }
 
+function getTextScryptLD(item_title, currentImage, item_search, offer) {
+	var dateModified = new Date;
+	var datePublished = dateModified - 3600;
+	var textScryptLD = '';
+	textScryptLD += '<script type="application/ld+json">';
+	textScryptLD += '{';
+	textScryptLD += '"@context": "http://schema.org/",';
+	textScryptLD += '"@type": "NewsArticle",';
+	textScryptLD += '"mainEntityOfPage": {';
+	textScryptLD += '"@type": "WebPage",';
+	textScryptLD += '"@id": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
+	textScryptLD += '},';
+	textScryptLD += '"headline": "' + item_title + '",';
+	textScryptLD += '"image": "' + currentImage + '",';
+	textScryptLD += '"datePublished": "' + datePublished.toISOString() + '",';
+	textScryptLD += '"dateModified": "' + dateModified.toISOString() + '",';
+	textScryptLD += '"author": {';
+	textScryptLD += '"@type": "Person",';
+	textScryptLD += '"name": "SuperDeals"';
+	textScryptLD += '},';
+	textScryptLD += '"publisher": {';
+	textScryptLD += '"@type": "Organization",';
+	textScryptLD += '"name": "SuperDeals",';
+	textScryptLD += '"logo": {';
+	textScryptLD += '"@type": "ImageObject",';
+	textScryptLD += '"url": "https://superdealsbg.github.io/images/SuperDeals-logo.png"';
+	textScryptLD += '}';
+	textScryptLD += '},';
+	textScryptLD += '"description": "' + item_title + '"';
+	textScryptLD += '}';
+	textScryptLD += '</script>';
+	return textScryptLD;
+}
+
 function createPageItem(item) {
 	App.mode = 'item';
 	App.content.html('');
@@ -397,16 +431,7 @@ function createPageItem(item) {
 	var currentTitle = currentDescription.substr(0, 100) + '... ' + '#SuperDeals';
 	var currentUrl = $("link[rel='canonical']").attr("href");
 
-	var textScryptLD = '';
-	textScryptLD += '<script type="application/ld+json">';
-	textScryptLD += '{';
-	textScryptLD += '"@context": "http://schema.org/",';
-	textScryptLD += '"@type": "Recipe",';
-	textScryptLD += '"name": "' + item_title + '",';
-	textScryptLD += '"image": "' + currentImage + '",';
-	textScryptLD += '"url": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
-	textScryptLD += '}';
-	textScryptLD += '</script>';
+	var textScryptLD = getTextScryptLD(item_title, currentImage, item_search, offer);
 	$("head").append(textScryptLD);
 
 	var textSocial = '';
@@ -871,7 +896,7 @@ $(document).ready(function () {
 	textMain += '</main>';
 	textMain += textFooter;
 	textMain += '<div id="footerPage">';
-	
+
 	textMain += '<ol class="footer-logo">';
 	textMain += '	<li><a href="https://superdealsgb.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - Gearbest" alt="SuperDeals - Gearbest"></a></li>';
 	textMain += '	<li><a href="https://www.instagram.com/superdeals.bg/" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
@@ -934,7 +959,7 @@ $(document).ready(function () {
 		hideHeaderAndFooter();
 		my_ga('send', 'event', 'hideHeaderAndFooter', 'click', 'elementInfoPage');
 	});
-/*
+	/*
 	App.elementFooterInfo.click(function () {
 		getInfoPage();
 		my_ga('send', 'event', 'getInfoPage', 'click', 'elementFooterInfo');
