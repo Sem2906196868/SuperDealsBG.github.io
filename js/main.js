@@ -355,9 +355,6 @@ function progressRefresh() {
 }
 
 function getTextScryptLD(item_title, currentImage, item_search, offer) {
-	var dateModified = new Date();
-	var datePublished = dateModified;
-	datePublished.setMilliseconds(datePublished.getMilliseconds() - 3600);
 	var textScryptLD = '';
 	textScryptLD += '<script type="application/ld+json">';
 	textScryptLD += '{';
@@ -369,8 +366,18 @@ function getTextScryptLD(item_title, currentImage, item_search, offer) {
 	textScryptLD += '},';
 	textScryptLD += '"headline": "' + item_title + '",';
 	textScryptLD += '"image": "' + currentImage + '",';
-	textScryptLD += '"datePublished": "' + datePublished.toISOString() + '",';
-	textScryptLD += '"dateModified": "' + dateModified.toISOString() + '",';
+	try {
+		var datePublished = new Date();
+		textScryptLD += '"datePublished": "' + datePublished.toISOString() + '",';
+	} catch (e) {
+		textScryptLD += '"datePublished": "2018-08-05T10:25:08+00:00",';
+	}
+	try {
+		var dateModified = new Date();
+		textScryptLD += '"dateModified": "' + dateModified.toISOString() + '",';
+	} catch (e) {
+		textScryptLD += '"dateModified": "2018-08-05T11:25:08+00:00",';
+	}
 	textScryptLD += '"author": {';
 	textScryptLD += '"@type": "Person",';
 	textScryptLD += '"name": "SuperDeals"';
