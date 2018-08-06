@@ -520,7 +520,7 @@ function createPage(dataStart, dataLimit) {
 				if (currentImage == '') {
 					currentImage = item.image;
 					if (currentImage.toLowerCase().indexOf("alicdn.com".toLowerCase()) >= 0) {
-						currentImage = currentImage.replace(".jpg", ".jpg_80x80.jpg")
+						currentImage = currentImage.replace(".jpg_220x220.jpg", ".jpg").replace(".jpg", ".jpg_80x80.jpg")
 					}
 				}
 			}
