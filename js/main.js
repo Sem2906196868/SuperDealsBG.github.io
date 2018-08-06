@@ -1,4 +1,16 @@
 var isRandom = true;
+var currentSuperDealsURL_Prev = 'https://superdealsgb.github.io/';
+var currentSuperDealsOfferName_Prev = 'Gearbest';
+var currentSuperDealsURL_Next = 'https://superdealsae.github.io/';
+var currentSuperDealsOfferName_Next = 'AliExpress';
+var currentInstagram = 'https://www.instagram.com/superdeals.bg/';
+var currentTwitter = 'https://goo.gl/Omdm8u';
+var currentTelegram = 'https://telegram.me/SuperDeals';
+var currentYoutube = 'https://www.youtube.com/channel/UC29U65n152gFoKaBh3Z0sRQ';
+var currentGooglePlus = 'https://plus.google.com/110735259612773101703';
+var currentRSS = 'https://feeds.feedburner.com/BG/SuperDeals';
+var currentDomain = 'https://superdealsbg.github.io/';
+var currentKeywords = 'SuperDealsBG';
 var offerName = 'Banggood';
 var offer = '';
 var initialPoint = undefined;
@@ -355,7 +367,7 @@ function progressRefresh() {
 }
 
 function getTextScryptLD(item_title, currentImage, item_search, offer) {
-	var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
+	var item_link_local = '' + currentDomain + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
 	var textScryptLD = '';
 	textScryptLD += '<script type="application/ld+json">';
 	textScryptLD += '{';
@@ -363,7 +375,7 @@ function getTextScryptLD(item_title, currentImage, item_search, offer) {
 	textScryptLD += '"@type": "NewsArticle",';
 	textScryptLD += '"mainEntityOfPage": {';
 	textScryptLD += '"@type": "WebPage",';
-	//textScryptLD += '"@id": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
+	//textScryptLD += '"@id": "' + '' + currentDomain + offer + '?item=' + item_search + '"';
 	textScryptLD += '"@id": "' + item_link_local + '"';
 	textScryptLD += '},';
 	textScryptLD += '"headline": "' + item_title + '",';
@@ -389,7 +401,7 @@ function getTextScryptLD(item_title, currentImage, item_search, offer) {
 	textScryptLD += '"name": "SuperDeals",';
 	textScryptLD += '"logo": {';
 	textScryptLD += '"@type": "ImageObject",';
-	textScryptLD += '"url": "https://superdealsbg.github.io/images/SuperDeals-logo.png"';
+	textScryptLD += '"url": "' + currentDomain + 'images/SuperDeals-logo.png"';
 	textScryptLD += '}';
 	textScryptLD += '},';
 	textScryptLD += '"description": "' + item_title + '"';
@@ -424,21 +436,21 @@ function createPageItem(item) {
 	}
 	catch (e) {}
 	if (isLocal) {
-		currentImage = 'https://superdealsbg.github.io/image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
+		currentImage = '' + currentDomain + 'image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
 	}
 
-	var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
+	var item_link_local = '' + currentDomain + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
 
 	$("meta[name='description']").attr("content", item_title);
-	$("meta[name='keywords']").attr("content", "SuperDealsBG, " + item_title.split("  ").join(" ").split(" ").join(", "));
+	$("meta[name='keywords']").attr("content", "" + currentKeywords + ", " + item_title.split("  ").join(" ").split(" ").join(", "));
 	$("meta[property='og\\:type']").attr("content", "article");
 	$("meta[property='og\\:title']").attr("content", "SuperDeals");
 	$("meta[property='og\\:description']").attr("content", item_title);
 	$("meta[property='og\\:image']").attr("content", currentImage);
-	//$("meta[property='og\\:url']").attr("content", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	//$("meta[property='og\\:url']").attr("content", "" + currentDomain + offer + "?item=" + item_search);
 	$("meta[property='og\\:url']").attr("content", item_link_local);
 	$("meta[name='twitter\\:card']").attr("content", "summary_large_image");
-	//$("link[rel='canonical']").attr("href", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	//$("link[rel='canonical']").attr("href", "" + currentDomain + offer + "?item=" + item_search);
 	$("link[rel='canonical']").attr("href", item_link_local);
 	document.title = 'SuperDeals - ' + item_title;
 	var currentDescription = $("meta[property='og\\:description']").attr("content");
@@ -516,7 +528,7 @@ function createPage(dataStart, dataLimit) {
 			if (location_hash == '') {
 				location_hash = item_search;
 			}
-			var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
+			var item_link_local = '' + currentDomain + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
 			//var item_link = location.pathname + '?item=' + item_search;
 			var item_link = item_link_local;
 			if (App.phraseSearch != '') {
@@ -549,14 +561,14 @@ function createPage(dataStart, dataLimit) {
 		try {
 			var searchResult = App.currentItem;
 			$("meta[name='description']").attr("content", searchResult.title);
-			$("meta[name='keywords']").attr("content", "SuperDealsBG, " + searchResult.title.split("  ").join(" ").split(" ").join(", "));
+			$("meta[name='keywords']").attr("content", "" + currentKeywords + ", " + searchResult.title.split("  ").join(" ").split(" ").join(", "));
 			$("meta[property='og\\:type']").attr("content", "article");
 			$("meta[property='og\\:title']").attr("content", "SuperDeals");
 			$("meta[property='og\\:description']").attr("content", searchResult.title);
 			$("meta[property='og\\:image']").attr("content", searchResult.image);
-			$("meta[property='og\\:url']").attr("content", "https://superdealsbg.github.io/" + offer + "#" + searchResult.search);
+			$("meta[property='og\\:url']").attr("content", "" + currentDomain + offer + "#" + searchResult.search);
 			$("meta[name='twitter\\:card']").attr("content", "summary_large_image");
-			$("link[rel='canonical']").attr("href", "https://superdealsbg.github.io/" + offer + "#" + searchResult.search);
+			$("link[rel='canonical']").attr("href", "" + currentDomain + offer + "#" + searchResult.search);
 			document.title = 'SuperDeals - ' + searchResult.title;
 		}
 		catch (e) {
@@ -573,16 +585,16 @@ function createPage(dataStart, dataLimit) {
 }
 
 function defaultHeaderMetaProperty() {
-	var searchResult_title = "Save BIG on top quality items on Banggood...";
+	var searchResult_title = "Save BIG on top quality items on " + offerName + "...";
 	$("meta[name='description']").attr("content", searchResult_title);
-	$("meta[name='keywords']").attr("content", "SuperDealsBG, SuperDeals, SuperDeal, Banggood, online shopping, gadgets, electronics");
+	$("meta[name='keywords']").attr("content", "" + currentKeywords + ", SuperDeals, SuperDeal, " + offerName + ", online shopping, gadgets, electronics");
 	$("meta[property='og\\:type']").attr("content", "website");
 	$("meta[property='og\\:title']").attr("content", "SuperDeals");
 	$("meta[property='og\\:description']").attr("content", searchResult_title);
-	$("meta[property='og\\:image']").attr("content", "https://superdealsbg.github.io/images/SuperDeals-250x250.png");
-	$("meta[property='og\\:url']").attr("content", "https://superdealsbg.github.io/");
+	$("meta[property='og\\:image']").attr("content", "" + currentDomain + "images/SuperDeals-250x250.png");
+	$("meta[property='og\\:url']").attr("content", currentDomain);
 	$("meta[name='twitter\\:card']").attr("content", "summary");
-	$("link[rel='canonical']").attr("href", "https://superdealsbg.github.io/");
+	$("link[rel='canonical']").attr("href", currentDomain);
 	document.title = 'SuperDeals';
 }
 
@@ -632,11 +644,11 @@ function getInfoPage() {
 }
 
 function getRSSPage() {
-	openURL("http://feeds.feedburner.com/BG/SuperDeals", true);
+	openURL(currentRSS, true);
 }
 
 function getSuperDealsTelegramPage() {
-	openURL("http://telegram.me/SuperDeals", true);
+	openURL(currentTelegram, true);
 }
 
 function getElementsPerPage() {
@@ -914,18 +926,18 @@ $(document).ready(function () {
 	textMain += '<div id="footerPage">';
 
 	textMain += '<ol class="footer-logo">';
-	textMain += '	<li><a href="https://superdealsgb.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - Gearbest" alt="SuperDeals - Gearbest"></a></li>';
-	textMain += '	<li><a href="https://www.instagram.com/superdeals.bg/" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
-	textMain += '	<li><a href="https://goo.gl/Omdm8u" target="_blank"><img class="social-logo-small" src="images/twitter-128x128.png" alt="Twitter" title="Twitter"></a></li>';
-	textMain += '	<li><a href="http://telegram.me/SuperDeals" target="_blank"><img class="social-logo-small" src="images/telegram-128x128.png" alt="Telegram" title="Telegram"></a></li>';
-	textMain += '	<li><a href="https://www.youtube.com/channel/UC29U65n152gFoKaBh3Z0sRQ" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
-	textMain += '	<li><a href="https://plus.google.com/110735259612773101703" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
-	textMain += '	<li><a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
-	textMain += '	<li><a href="https://superdealsae.github.io/" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - AliExpress" alt="SuperDeals - AliExpress"></a></li>';
+	textMain += '	<li><a href="' + currentSuperDealsURL_Prev + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + currentSuperDealsOfferName_Prev + '" alt="SuperDeals - ' + currentSuperDealsOfferName_Prev + '"></a></li>';
+	textMain += '	<li><a href="' + currentInstagram + '" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
+	textMain += '	<li><a href="' + currentTwitter + '" target="_blank"><img class="social-logo-small" src="images/twitter-128x128.png" alt="Twitter" title="Twitter"></a></li>';
+	textMain += '	<li><a href="' + currentTelegram + '" target="_blank"><img class="social-logo-small" src="images/telegram-128x128.png" alt="Telegram" title="Telegram"></a></li>';
+	textMain += '	<li><a href="' + currentYoutube + '" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
+	textMain += '	<li><a href="' + currentGooglePlus + '" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
+	textMain += '	<li><a href="' + currentRSS + '" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
+	textMain += '	<li><a href="' + currentSuperDealsURL_Next + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + currentSuperDealsOfferName_Next + '" alt="SuperDeals - ' + currentSuperDealsOfferName_Next + '"></a></li>';	
 	textMain += '</ol>';
 
 	//textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2018</span></a>';
-	//textMain += '<a href="http://feeds.feedburner.com/BG/SuperDeals" target="_blank"><span id="footerRSS"></span></a>';
+	//textMain += '<a href="' + currentRSS + '" target="_blank"><span id="footerRSS"></span></a>';
 	textMain += '</div>';
 	textMain += '</footer>';
 	$("#main").html(textMain);
