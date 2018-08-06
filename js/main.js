@@ -1,8 +1,8 @@
 var isRandom = true;
-var currentSuperDealsURL_Prev = 'https://superdealsgb.github.io/';
-var currentSuperDealsOfferName_Prev = 'Gearbest';
-var currentSuperDealsURL_Next = 'https://superdealsae.github.io/';
-var currentSuperDealsOfferName_Next = 'AliExpress';
+var prevSuperDealsURL = 'https://superdealsgb.github.io/';
+var prevSuperDealsOfferName = 'Gearbest';
+var nextSuperDealsURL = 'https://superdealsae.github.io/';
+var nextSuperDealsOfferName = 'AliExpress';
 var currentInstagram = 'https://www.instagram.com/superdeals.bg/';
 var currentTwitter = 'https://goo.gl/Omdm8u';
 var currentTelegram = 'https://telegram.me/SuperDeals';
@@ -926,14 +926,14 @@ $(document).ready(function () {
 	textMain += '<div id="footerPage">';
 
 	textMain += '<ol class="footer-logo">';
-	textMain += '	<li><a href="' + currentSuperDealsURL_Prev + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + currentSuperDealsOfferName_Prev + '" alt="SuperDeals - ' + currentSuperDealsOfferName_Prev + '"></a></li>';
+	textMain += '	<li><a href="' + prevSuperDealsURL + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + prevSuperDealsOfferName + '" alt="SuperDeals - ' + prevSuperDealsOfferName + '"></a></li>';
 	textMain += '	<li><a href="' + currentInstagram + '" target="_blank"><img class="social-logo-small" src="images/instagram-128x128.png" alt="Instagram" title="Instagram"></a></li>';
 	textMain += '	<li><a href="' + currentTwitter + '" target="_blank"><img class="social-logo-small" src="images/twitter-128x128.png" alt="Twitter" title="Twitter"></a></li>';
 	textMain += '	<li><a href="' + currentTelegram + '" target="_blank"><img class="social-logo-small" src="images/telegram-128x128.png" alt="Telegram" title="Telegram"></a></li>';
 	textMain += '	<li><a href="' + currentYoutube + '" target="_blank"><img class="social-logo-small" src="images/youtube-128x128.png" alt="YouTube" title="YouTube"></a></li>';
 	textMain += '	<li><a href="' + currentGooglePlus + '" target="_blank"><img class="social-logo-small" src="images/google-plus-128x128.png" alt="Google+" title="Google+"></a></li>';
 	textMain += '	<li><a href="' + currentRSS + '" target="_blank"><img class="social-logo-small" src="images/rss-128x128.png" alt="RSS" title="RSS"></a></li>';
-	textMain += '	<li><a href="' + currentSuperDealsURL_Next + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + currentSuperDealsOfferName_Next + '" alt="SuperDeals - ' + currentSuperDealsOfferName_Next + '"></a></li>';	
+	textMain += '	<li><a href="' + nextSuperDealsURL + '" target="_blank"><img class="social-logo-small" src="images/SuperDeals-250x250-transparent.png" title="SuperDeals - ' + nextSuperDealsOfferName + '" alt="SuperDeals - ' + nextSuperDealsOfferName + '"></a></li>';	
 	textMain += '</ol>';
 
 	//textMain += '<a href="/about"><span id="footerInfo">SuperDeals &copy; 2018</span></a>';
