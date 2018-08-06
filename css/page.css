@@ -86,3 +86,14 @@ ol {
 	box-sizing: border-box;
 	margin-left: -0px;
 }
+.pagination-button {
+	margin-bottom: 20px;
+}
+.pagination-button-prev {
+	float: left;
+	padding: 6px;
+}
+.pagination-button-next {
+	float: right;
+	padding: 6px;
+}
