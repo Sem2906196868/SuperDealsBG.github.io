@@ -355,6 +355,7 @@ function progressRefresh() {
 }
 
 function getTextScryptLD(item_title, currentImage, item_search, offer) {
+	var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
 	var textScryptLD = '';
 	textScryptLD += '<script type="application/ld+json">';
 	textScryptLD += '{';
@@ -362,7 +363,8 @@ function getTextScryptLD(item_title, currentImage, item_search, offer) {
 	textScryptLD += '"@type": "NewsArticle",';
 	textScryptLD += '"mainEntityOfPage": {';
 	textScryptLD += '"@type": "WebPage",';
-	textScryptLD += '"@id": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
+	//textScryptLD += '"@id": "' + 'https://superdealsbg.github.io/' + offer + '?item=' + item_search + '"';
+	textScryptLD += '"@id": "' + item_link_local + '"';
 	textScryptLD += '},';
 	textScryptLD += '"headline": "' + item_title + '",';
 	textScryptLD += '"image": "' + currentImage + '",';
@@ -425,15 +427,19 @@ function createPageItem(item) {
 		currentImage = 'https://superdealsbg.github.io/image/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8) + '.jpg';
 	}
 
+	var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
+
 	$("meta[name='description']").attr("content", item_title);
 	$("meta[name='keywords']").attr("content", "SuperDealsBG, " + item_title.split("  ").join(" ").split(" ").join(", "));
 	$("meta[property='og\\:type']").attr("content", "article");
 	$("meta[property='og\\:title']").attr("content", "SuperDeals");
 	$("meta[property='og\\:description']").attr("content", item_title);
 	$("meta[property='og\\:image']").attr("content", currentImage);
-	$("meta[property='og\\:url']").attr("content", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	//$("meta[property='og\\:url']").attr("content", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	$("meta[property='og\\:url']").attr("content", item_link_local);
 	$("meta[name='twitter\\:card']").attr("content", "summary_large_image");
-	$("link[rel='canonical']").attr("href", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	//$("link[rel='canonical']").attr("href", "https://superdealsbg.github.io/" + offer + "?item=" + item_search);
+	$("link[rel='canonical']").attr("href", item_link_local);
 	document.title = 'SuperDeals - ' + item_title;
 	var currentDescription = $("meta[property='og\\:description']").attr("content");
 	var currentTitle = currentDescription.substr(0, 100) + '... ' + '#SuperDeals';
@@ -510,7 +516,9 @@ function createPage(dataStart, dataLimit) {
 			if (location_hash == '') {
 				location_hash = item_search;
 			}
-			var item_link = location.pathname + '?item=' + item_search;
+			var item_link_local = 'https://superdealsbg.github.io/' + offer + 'item/' + item_search.slice(0, 4) + '/' + item_search.substr(4, 8);
+			//var item_link = location.pathname + '?item=' + item_search;
+			var item_link = item_link_local;
 			if (App.phraseSearch != '') {
 				item_link += '&search=' + App.phraseSearch;
 			}
