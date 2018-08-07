@@ -532,7 +532,8 @@ function createPage(dataStart, dataLimit) {
 			//var item_link = location.pathname + '?item=' + item_search;
 			var item_link = item_link_local;
 			if (App.phraseSearch != '') {
-				item_link += '&search=' + App.phraseSearch;
+				//item_link += '&search=' + App.phraseSearch;
+				item_link += '?search=' + App.phraseSearch;
 			}
 			/*
 			//{black
