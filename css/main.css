@@ -326,6 +326,9 @@ a p {
 	background: #ff8a00;
 	padding: 12px;	
 }
+p:hover {
+	opacity: .9;
+}
 
 .img_wrapper {
 	margin: 0;
