@@ -319,6 +319,14 @@ a:focus .img_wrapper {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,.48);	
 }
 
+a p {
+	border-radius: 4px;
+	text-align: center;
+	color: #fff;
+	background: #ff8a00;
+	padding: 12px;	
+}
+
 .img_wrapper {
 	margin: 0;
 	padding: 0;
