@@ -7,7 +7,9 @@
 			imgs[i].src = currentImage;
 			break;
 		}
-	}	
+	}
 }
 
-getOriginalImage();
+window.addEventListener("load", function(e) {
+	getOriginalImage();
+});
