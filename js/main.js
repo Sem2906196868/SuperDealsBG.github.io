@@ -640,7 +640,8 @@ function getSuperDealsTwitterPage() {
 }
 
 function getSuperDealsPage() {
-	openURL("/", true);
+	openURL("/category", true);
+	//openURL("/", true);
 }
 
 function getInfoPage() {
