@@ -7,7 +7,7 @@
 "278": {
 "parentId": "274",
 "name": "Women",
-"count": 0
+"count": 8534
 },
 "2487": {
 "parentId": "1697",
@@ -82,7 +82,7 @@
 "892": {
 "parentId": "0",
 "name": "Health & Beauty",
-"count": 2
+"count": 0
 },
 "2703": {
 "parentId": "1031",
@@ -162,7 +162,7 @@
 "3501": {
 "parentId": "170",
 "name": "Fine Jewelry",
-"count": 0
+"count": 169
 },
 "1039": {
 "parentId": "1031",
@@ -187,7 +187,7 @@
 "1087": {
 "parentId": "896",
 "name": "Outdoor Recreation",
-"count": 0
+"count": 319
 },
 "1093": {
 "parentId": "1031",
@@ -292,7 +292,7 @@
 "1708": {
 "parentId": "1091",
 "name": "Batteries & Chargers",
-"count": 0
+"count": 3
 },
 "177": {
 "parentId": "1134",
@@ -327,7 +327,7 @@
 "1726": {
 "parentId": "170",
 "name": "Keychain & Ornaments",
-"count": 0
+"count": 2
 },
 "1729": {
 "parentId": "133",
@@ -352,7 +352,7 @@
 "895": {
 "parentId": "892",
 "name": "Hair & Accessories",
-"count": 0
+"count": 257
 },
 "1805": {
 "parentId": "1031",
@@ -397,7 +397,7 @@
 "2890": {
 "parentId": "170",
 "name": "Women Watches",
-"count": 0
+"count": 401
 },
 "2153": {
 "parentId": "1091",
@@ -412,7 +412,7 @@
 "2187": {
 "parentId": "155",
 "name": "Mini PC & Accessories",
-"count": 0
+"count": 24
 },
 "2193": {
 "parentId": "1134",
@@ -427,7 +427,7 @@
 "227": {
 "parentId": "1134",
 "name": "Car Alarm & Security",
-"count": 0
+"count": 201
 },
 "2758": {
 "parentId": "170",
@@ -457,12 +457,12 @@
 "2341": {
 "parentId": "3798",
 "name": "Men's Shoes",
-"count": 0
+"count": 764
 },
 "2420": {
 "parentId": "892",
 "name": "Teeth & Mouth Care",
-"count": 2
+"count": 0
 },
 "2433": {
 "parentId": "170",
@@ -482,7 +482,7 @@
 "5986": {
 "parentId": "6518",
 "name": "Raw Materials",
-"count": 0
+"count": 109
 },
 "2514": {
 "parentId": "1697",
@@ -512,12 +512,12 @@
 "2761": {
 "parentId": "170",
 "name": "Kid's Jewelry & DIY",
-"count": 0
+"count": 327
 },
 "277": {
 "parentId": "3798",
 "name": "Women's Shoes",
-"count": 0
+"count": 1729
 },
 "897": {
 "parentId": "896",
@@ -532,7 +532,7 @@
 "2825": {
 "parentId": "1134",
 "name": "Electric Scooters",
-"count": 0
+"count": 33
 },
 "2903": {
 "parentId": "6518",
@@ -612,7 +612,7 @@
 "4198": {
 "parentId": "896",
 "name": "Ski & Snowboard",
-"count": 0
+"count": 136
 },
 "422": {
 "parentId": "155",
@@ -662,17 +662,17 @@
 "4658": {
 "parentId": "3798",
 "name": "Kids Bags",
-"count": 0
+"count": 24
 },
 "4673": {
 "parentId": "274",
 "name": "Kids",
-"count": 0
+"count": 573
 },
 "4910": {
 "parentId": "170",
 "name": "Magnet & Healing Jewelry",
-"count": 0
+"count": 4
 },
 "5227": {
 "parentId": "896",
@@ -687,7 +687,7 @@
 "5658": {
 "parentId": "896",
 "name": "Team Sport",
-"count": 0
+"count": 26
 },
 "5954": {
 "parentId": "6518",
@@ -712,12 +712,12 @@
 "851": {
 "parentId": "892",
 "name": "Tattoos & Body Art",
-"count": 0
+"count": 74
 },
 "931": {
 "parentId": "892",
 "name": "Makeup",
-"count": 0
+"count": 1071
 },
 "98": {
 "parentId": "140",
