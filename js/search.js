@@ -71,6 +71,7 @@ $(document).ready(function() {
 			$('.loader').addClass('hide');			
 			var tableSuperdeals = $('#superdeals').DataTable( {
 				data: App.dataAll,
+				deferRender: true,
 				order: [],
 				columns: [
 					{ title: "" },
