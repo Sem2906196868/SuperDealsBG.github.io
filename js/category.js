@@ -70,6 +70,7 @@ function getCategoryData() {
 		}
 		tableSuperdeals = $('#superdeals').DataTable( {
 			data: items,
+			deferRender: true,
 			order: [],
 			columns: [
 				{ title: "" },
