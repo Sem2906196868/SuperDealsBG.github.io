@@ -2,26 +2,21 @@
 "140": {
 "parentId": "0",
 "name": "Mobile Phones & Accessories",
-"count": 4
+"count": 64
 },
 "278": {
 "parentId": "274",
 "name": "Women",
-"count": 8667
+"count": 3675
 },
 "2487": {
 "parentId": "1697",
 "name": "Holiday Lights",
-"count": 519
+"count": 252
 },
 "1031": {
 "parentId": "0",
 "name": "Home and Garden",
-"count": 0
-},
-"133": {
-"parentId": "0",
-"name": "Toys Hobbies and Robot",
 "count": 0
 },
 "3798": {
@@ -29,40 +24,45 @@
 "name": "Bags & Shoes",
 "count": 0
 },
-"2032": {
-"parentId": "896",
-"name": "Sunglasses & Sports Glasses",
-"count": 139
-},
-"1091": {
+"133": {
 "parentId": "0",
-"name": "Electronics",
+"name": "Toys Hobbies and Robot",
 "count": 0
-},
-"1985": {
-"parentId": "892",
-"name": "Skin Care",
-"count": 724
 },
 "896": {
 "parentId": "0",
 "name": "Sports & Outdoor",
-"count": 239
+"count": 152
+},
+"2032": {
+"parentId": "896",
+"count": 4,
+"name": "Sunglasses & Sports Glasses"
+},
+"1091": {
+"parentId": "0",
+"name": "Electronics",
+"count": 1
+},
+"1985": {
+"parentId": "892",
+"count": 8,
+"name": "Skin Care"
 },
 "3491": {
 "parentId": "6518",
 "name": "Laser Equipment",
-"count": 308
+"count": 133
 },
 "274": {
 "parentId": "0",
 "name": "Clothing and Apparel",
-"count": 657
+"count": 3292
 },
 "1749": {
 "parentId": "1134",
 "name": "Interior Accessories",
-"count": 933
+"count": 366
 },
 "1134": {
 "parentId": "0",
@@ -81,28 +81,28 @@
 },
 "892": {
 "parentId": "0",
-"name": "Health & Beauty",
-"count": 97
+"count": 3,
+"name": "Health & Beauty"
 },
 "2703": {
 "parentId": "1031",
-"name": "Home Textiles",
-"count": 1017
+"count": 5,
+"name": "Home Textiles"
 },
 "1986": {
 "parentId": "892",
-"name": "Shavers and Hair Removal",
-"count": 370
+"count": 9,
+"name": "Shavers and Hair Removal"
 },
 "1762": {
 "parentId": "896",
 "name": "Hunting & Tactical Supplies",
-"count": 439
+"count": 76
 },
 "170": {
 "parentId": "0",
-"name": "Jewelry and Watch",
-"count": 0
+"count": 0,
+"name": "Jewelry and Watch"
 },
 "6518": {
 "parentId": "0",
@@ -111,617 +111,522 @@
 },
 "1423": {
 "parentId": "133",
-"name": "Learning & Education",
-"count": 827
+"count": 10,
+"name": "Learning & Education"
 },
 "279": {
 "parentId": "274",
 "name": "Men",
-"count": 4627
+"count": 190
 },
 "1032": {
 "parentId": "1031",
 "name": "Housekeeping & Organization",
-"count": 631
+"count": 120
 },
 "1704": {
 "parentId": "892",
-"name": "Massager & Relaxing",
-"count": 272
+"count": 2,
+"name": "Massager & Relaxing"
 },
 "3498": {
 "parentId": "1031",
-"name": "Faucets",
-"count": 206
+"count": 2,
+"name": "Faucets"
 },
 "1034": {
 "parentId": "1031",
-"name": "Pet Supplies",
-"count": 831
+"count": 7,
+"name": "Pet Supplies"
 },
 "1707": {
 "parentId": "6518",
-"name": "Professional Tools",
-"count": 5070
-},
-"1495": {
-"parentId": "133",
-"name": "Holidays & Events Gadgets",
-"count": 397
+"count": 169,
+"name": "Professional Tools"
 },
 "1037": {
 "parentId": "1031",
-"name": "Gardening",
-"count": 1209
+"count": 14,
+"name": "Gardening"
 },
 "1888": {
 "parentId": "133",
-"name": "Gadget Toys",
-"count": 1113
-},
-"3501": {
-"parentId": "170",
-"name": "Fine Jewelry",
-"count": 175
+"count": 1,
+"name": "Gadget Toys"
 },
 "1039": {
 "parentId": "1031",
-"name": "Kitchen,Dining & Bar",
-"count": 2670
+"count": 29,
+"name": "Kitchen,Dining & Bar"
 },
 "1048": {
 "parentId": "1091",
-"name": "Electronic Accessories & Gadgets",
-"count": 417
+"count": 16,
+"name": "Electronic Accessories & Gadgets"
 },
 "1057": {
 "parentId": "1697",
 "name": "Flashlight",
-"count": 1733
+"count": 156
 },
 "1060": {
 "parentId": "892",
-"name": "Nail Art",
-"count": 1167
+"count": 8,
+"name": "Nail Art"
 },
 "1087": {
 "parentId": "896",
 "name": "Outdoor Recreation",
-"count": 311
-},
-"1093": {
-"parentId": "1031",
-"name": "Festival Gifts & Party Supplies",
-"count": 481
-},
-"175": {
-"parentId": "1134",
-"name": "Car Electronics",
-"count": 915
-},
-"1097": {
-"parentId": "1091",
-"name": "Security & Protection",
-"count": 1755
-},
-"1116": {
-"parentId": "896",
-"name": "Camping",
-"count": 2595
-},
-"1123": {
-"parentId": "3798",
-"name": "Women's Bags",
-"count": 2695
-},
-"1374": {
-"parentId": "1134",
-"name": "Car Lights",
-"count": 767
-},
-"153": {
-"parentId": "1091",
-"name": "Media Players",
-"count": 869
-},
-"1800": {
-"parentId": "1031",
-"name": "Baby Kids & Mother Care",
-"count": 508
-},
-"1958": {
-"parentId": "155",
-"name": "Computer Cables & Connectors",
-"count": 231
-},
-"1679": {
-"parentId": "170",
-"name": "Watch Tools",
-"count": 239
-},
-"1567": {
-"parentId": "140",
-"name": "Smartphones",
-"count": 141
-},
-"1627": {
-"parentId": "1697",
-"name": "LED Light Bulbs",
-"count": 950
-},
-"2743": {
-"parentId": "6518",
-"name": "Hardware & Accessories",
-"count": 3978
-},
-"2006": {
-"parentId": "1031",
-"name": "Home Appliance",
-"count": 218
-},
-"1690": {
-"parentId": "140",
-"name": "Gadgets",
-"count": 215
-},
-"1696": {
-"parentId": "140",
-"name": "Apple Accessories",
-"count": 2480
-},
-"5272": {
-"parentId": "140",
-"name": "Smart Watch & Band",
-"count": 821
-},
-"3993": {
-"parentId": "133",
-"name": "RC Robot",
-"count": 253
-},
-"1977": {
-"parentId": "155",
-"name": "Computer Components",
-"count": 689
-},
-"1698": {
-"parentId": "1697",
-"name": "Lasers",
-"count": 106
-},
-"1708": {
-"parentId": "1091",
-"name": "Batteries & Chargers",
-"count": 3
-},
-"177": {
-"parentId": "1134",
-"name": "Car Audio & Monitor",
-"count": 477
-},
-"1712": {
-"parentId": "133",
-"name": "Solar Energy",
-"count": 43
-},
-"179": {
-"parentId": "1134",
-"name": "GPS & Accessories",
-"count": 219
-},
-"1714": {
-"parentId": "1091",
-"name": "Plug & Adaptors",
-"count": 6
-},
-"1950": {
-"parentId": "140",
-"name": "Cases & Leather",
-"count": 788
-},
-"1716": {
-"parentId": "896",
-"name": "Cycling",
-"count": 1340
-},
-"1726": {
-"parentId": "170",
-"name": "Keychain & Ornaments",
-"count": 2
-},
-"1729": {
-"parentId": "133",
-"name": "RC Toys & Hobbies",
-"count": 14577
-},
-"1736": {
-"parentId": "1134",
-"name": "Auto Parts",
-"count": 1750
-},
-"1756": {
-"parentId": "1134",
-"name": "Motorcycle",
-"count": 5320
-},
-"2027": {
-"parentId": "896",
-"name": "Water Sports",
-"count": 288
-},
-"895": {
-"parentId": "892",
-"name": "Hair & Accessories",
-"count": 256
-},
-"1805": {
-"parentId": "1031",
-"name": "Home Decor",
-"count": 1887
-},
-"1760": {
-"parentId": "896",
-"name": "Fishing",
-"count": 976
-},
-"1780": {
-"parentId": "133",
-"name": "Musical Instruments",
-"count": 1140
-},
-"1801": {
-"parentId": "1031",
-"name": "Bathroom",
-"count": 994
-},
-"60": {
-"parentId": "1091",
-"name": "Video Games Accessories",
-"count": 909
-},
-"1957": {
-"parentId": "140",
-"name": "Earphones & Speakers",
-"count": 1591
+"count": 70
 },
 "23": {
 "parentId": "1091",
 "name": "Photography & Camera Acc",
-"count": 1746
+"count": 12
 },
 "2034": {
 "parentId": "1134",
-"name": "Car DVRs",
-"count": 989
+"count": 17,
+"name": "Car DVRs"
 },
-"2890": {
+"1093": {
+"parentId": "1031",
+"count": 2,
+"name": "Festival Gifts & Party Supplies"
+},
+"175": {
+"parentId": "1134",
+"name": "Car Electronics",
+"count": 17
+},
+"1097": {
+"parentId": "1091",
+"count": 29,
+"name": "Security & Protection"
+},
+"1116": {
+"parentId": "896",
+"name": "Camping",
+"count": 29
+},
+"1374": {
+"parentId": "1134",
+"name": "Car Lights",
+"count": 6
+},
+"153": {
+"parentId": "1091",
+"count": 5,
+"name": "Media Players"
+},
+"1800": {
+"parentId": "1031",
+"name": "Baby Kids & Mother Care",
+"count": 5
+},
+"1958": {
+"parentId": "155",
+"count": 4,
+"name": "Computer Cables & Connectors"
+},
+"1679": {
 "parentId": "170",
-"name": "Women Watches",
-"count": 397
+"count": 2,
+"name": "Watch Tools"
+},
+"1567": {
+"parentId": "140",
+"name": "Smartphones",
+"count": 145
+},
+"1627": {
+"parentId": "1697",
+"count": 9,
+"name": "LED Light Bulbs"
+},
+"2743": {
+"parentId": "6518",
+"name": "Hardware & Accessories",
+"count": 38
+},
+"2006": {
+"parentId": "1031",
+"count": 6,
+"name": "Home Appliance"
+},
+"1690": {
+"parentId": "140",
+"name": "Gadgets",
+"count": 4
+},
+"1696": {
+"parentId": "140",
+"name": "Apple Accessories",
+"count": 5
+},
+"5272": {
+"parentId": "140",
+"count": 11,
+"name": "Smart Watch & Band"
+},
+"3993": {
+"parentId": "133",
+"name": "RC Robot",
+"count": 212
+},
+"1977": {
+"parentId": "155",
+"count": 3,
+"name": "Computer Components"
+},
+"1698": {
+"parentId": "1697",
+"name": "Lasers",
+"count": 3
+},
+"179": {
+"parentId": "1134",
+"count": 1,
+"name": "GPS & Accessories"
+},
+"1714": {
+"parentId": "1091",
+"count": 1,
+"name": "Plug & Adaptors"
+},
+"1950": {
+"parentId": "140",
+"name": "Cases & Leather",
+"count": 12
+},
+"1716": {
+"parentId": "896",
+"count": 13,
+"name": "Cycling"
+},
+"1726": {
+"parentId": "170",
+"count": 1,
+"name": "Keychain & Ornaments"
+},
+"2179": {
+"parentId": "170",
+"count": 7,
+"name": "Watch Accessories"
+},
+"1729": {
+"parentId": "133",
+"name": "RC Toys & Hobbies",
+"count": 5681
+},
+"1736": {
+"parentId": "1134",
+"name": "Auto Parts",
+"count": 48
+},
+"1756": {
+"parentId": "1134",
+"name": "Motorcycle",
+"count": 1801
+},
+"2027": {
+"parentId": "896",
+"count": 2,
+"name": "Water Sports"
+},
+"1805": {
+"parentId": "1031",
+"count": 22,
+"name": "Home Decor"
+},
+"1760": {
+"parentId": "896",
+"name": "Fishing",
+"count": 224
+},
+"177": {
+"parentId": "1134",
+"count": 2,
+"name": "Car Audio & Monitor"
+},
+"1780": {
+"parentId": "133",
+"count": 12,
+"name": "Musical Instruments"
+},
+"1801": {
+"parentId": "1031",
+"count": 10,
+"name": "Bathroom"
+},
+"60": {
+"parentId": "1091",
+"name": "Video Games Accessories",
+"count": 104
+},
+"1957": {
+"parentId": "140",
+"count": 22,
+"name": "Earphones & Speakers"
 },
 "2153": {
 "parentId": "1091",
 "name": "Arduino Compatible SCM & DIY Kits",
-"count": 7843
-},
-"2179": {
-"parentId": "170",
-"name": "Watch Accessories",
-"count": 303
-},
-"2187": {
-"parentId": "155",
-"name": "Mini PC & Accessories",
-"count": 43
+"count": 147
 },
 "2193": {
 "parentId": "1134",
-"name": "Diagnostic Scan Tool",
-"count": 299
+"count": 5,
+"name": "Diagnostic Scan Tool"
 },
 "2204": {
 "parentId": "140",
-"name": "Power Banks",
-"count": 46
+"count": 4,
+"name": "Power Banks"
 },
 "227": {
 "parentId": "1134",
-"name": "Car Alarm & Security",
-"count": 201
-},
-"2758": {
-"parentId": "170",
-"name": "Gym & Hiking Watch",
-"count": 0
+"count": 3,
+"name": "Car Alarm & Security"
 },
 "2310": {
 "parentId": "1134",
 "name": "Exterior Accessories",
-"count": 235
+"count": 88
 },
 "2311": {
 "parentId": "1134",
 "name": "Car Repair & Maintenance",
-"count": 1445
-},
-"2312": {
-"parentId": "170",
-"name": "Men Jewelry",
-"count": 497
+"count": 209
 },
 "2332": {
 "parentId": "3798",
-"name": "Men's Bags",
-"count": 1949
-},
-"2341": {
-"parentId": "3798",
-"name": "Men's Shoes",
-"count": 765
+"count": 3,
+"name": "Men's Bags"
 },
 "2420": {
 "parentId": "892",
-"name": "Teeth & Mouth Care",
-"count": 0
+"count": 3,
+"name": "Teeth & Mouth Care"
 },
 "2433": {
 "parentId": "170",
-"name": "Women Jewelry",
-"count": 1572
+"count": 3,
+"name": "Women Jewelry"
 },
 "2512": {
 "parentId": "1697",
-"name": "LED Strip",
-"count": 1316
-},
-"2513": {
-"parentId": "3798",
-"name": "Kids Shoes",
-"count": 0
+"count": 14,
+"name": "LED Strip"
 },
 "5986": {
 "parentId": "6518",
-"name": "Raw Materials",
-"count": 113
+"count": 1,
+"name": "Raw Materials"
 },
 "2514": {
 "parentId": "1697",
 "name": "Indoor Lighting",
-"count": 1339
+"count": 24
 },
 "2518": {
 "parentId": "1697",
-"name": "Lighting Accessories",
-"count": 555
+"count": 5,
+"name": "Lighting Accessories"
 },
 "2622": {
 "parentId": "155",
-"name": "Office & School Supplies",
-"count": 1042
+"count": 3,
+"name": "Office & School Supplies"
 },
 "265": {
 "parentId": "133",
-"name": "Dolls & Stuffed Toys",
-"count": 2130
+"count": 9,
+"name": "Dolls & Stuffed Toys"
 },
 "273": {
 "parentId": "170",
-"name": "Men Watches",
-"count": 893
+"count": 2,
+"name": "Men Watches"
 },
 "2761": {
 "parentId": "170",
-"name": "Kid's Jewelry & DIY",
-"count": 323
+"count": 2,
+"name": "Kid's Jewelry & DIY"
 },
 "277": {
 "parentId": "3798",
 "name": "Women's Shoes",
-"count": 1769
+"count": 19
 },
 "897": {
 "parentId": "896",
 "name": "Fitness Wellness",
-"count": 643
+"count": 8
 },
 "2815": {
 "parentId": "140",
 "name": "Samsung Accessories",
-"count": 1437
-},
-"2825": {
-"parentId": "1134",
-"name": "Electric Scooters",
-"count": 33
+"count": 250
 },
 "2903": {
 "parentId": "6518",
 "name": "Electrical Equipment & Supplies",
-"count": 2665
+"count": 320
 },
 "3020": {
 "parentId": "133",
-"name": "Classic & Retro Toys",
-"count": 366
+"count": 8,
+"name": "Classic & Retro Toys"
 },
 "3158": {
 "parentId": "170",
-"name": "Smart Wearable Device",
-"count": 123
+"count": 2,
+"name": "Smart Wearable Device"
 },
 "3185": {
 "parentId": "1031",
-"name": "Smart Home",
-"count": 162
+"count": 28,
+"name": "Smart Home"
 },
 "3247": {
 "parentId": "140",
-"name": "Smart Devices & Accessories",
-"count": 375
+"count": 8,
+"name": "Smart Devices & Accessories"
 },
 "341": {
 "parentId": "140",
-"name": "Feature Phones",
-"count": 113
+"count": 4,
+"name": "Feature Phones"
 },
 "3518": {
 "parentId": "892",
-"name": "Eye Care",
-"count": 223
+"count": 10,
+"name": "Eye Care"
 },
 "3533": {
 "parentId": "1091",
-"name": "3D Printer & Supplies",
-"count": 1566
+"count": 52,
+"name": "3D Printer & Supplies"
 },
 "3574": {
 "parentId": "6518",
-"name": "Lab & Scientific Supplies",
-"count": 894
+"count": 9,
+"name": "Lab & Scientific Supplies"
 },
 "3718": {
 "parentId": "6518",
-"name": "Measurement & Analysis Instruments",
-"count": 1447
+"count": 84,
+"name": "Measurement & Analysis Instruments"
 },
 "378": {
 "parentId": "170",
-"name": "Jewelry Supplies",
-"count": 178
+"count": 1,
+"name": "Jewelry Supplies"
 },
 "3785": {
 "parentId": "1091",
 "name": "Home Audio & Video",
-"count": 1053
+"count": 63
 },
 "3867": {
 "parentId": "892",
-"name": "Hair Styling Tools & Salon",
-"count": 220
+"count": 5,
+"name": "Hair Styling Tools & Salon"
 },
 "4090": {
 "parentId": "6518",
-"name": "Mechanical Parts",
-"count": 7103
+"count": 159,
+"name": "Mechanical Parts"
 },
 "4123": {
 "parentId": "140",
 "name": "Mounts & Holders",
-"count": 665
-},
-"4198": {
-"parentId": "896",
-"name": "Ski & Snowboard",
-"count": 0
+"count": 2
 },
 "422": {
 "parentId": "155",
-"name": "Drives and Storage",
-"count": 451
-},
-"4266": {
-"parentId": "3798",
-"name": "Baby Shoes",
-"count": 0
+"count": 5,
+"name": "Drives and Storage"
 },
 "427": {
 "parentId": "155",
-"name": "Laptops & Accessories",
-"count": 314
+"count": 7,
+"name": "Laptops & Accessories"
 },
 "428": {
 "parentId": "155",
 "name": "Tablet PC",
-"count": 1329
+"count": 151
 },
 "429": {
 "parentId": "155",
-"name": "Networking",
-"count": 274
+"count": 3,
+"name": "Networking"
 },
 "4316": {
 "parentId": "6518",
 "name": "Tools & Home Improvement",
-"count": 5005
+"count": 52
 },
 "4335": {
 "parentId": "155",
-"name": "Computer Peripherals",
-"count": 859
+"count": 10,
+"name": "Computer Peripherals"
 },
 "4475": {
 "parentId": "133",
-"name": "Model & Building Toys",
-"count": 554
-},
-"4657": {
-"parentId": "3798",
-"name": "School Bags",
-"count": 0
-},
-"4658": {
-"parentId": "3798",
-"name": "Kids Bags",
-"count": 23
-},
-"4673": {
-"parentId": "274",
-"name": "Kids",
-"count": 565
-},
-"4910": {
-"parentId": "170",
-"name": "Magnet & Healing Jewelry",
-"count": 4
+"count": 2,
+"name": "Model & Building Toys"
 },
 "5227": {
 "parentId": "896",
 "name": "Outdoors Clothing & Shoes",
-"count": 456
+"count": 153
 },
 "5495": {
 "parentId": "1697",
-"name": "Outdoor Lighting",
-"count": 750
-},
-"5658": {
-"parentId": "896",
-"name": "Team Sport",
-"count": 23
+"count": 11,
+"name": "Outdoor Lighting"
 },
 "5954": {
 "parentId": "6518",
-"name": "Fasteners",
-"count": 126
+"count": 7,
+"name": "Fasteners"
 },
 "5955": {
 "parentId": "6518",
-"name": "Tapes, Adhesives & Sealants",
-"count": 204
+"count": 2,
+"name": "Tapes, Adhesives & Sealants"
 },
 "6494": {
 "parentId": "140",
 "name": "Mobile Phones Accessories",
-"count": 1775
+"count": 280
 },
 "6527": {
 "parentId": "6518",
-"name": "Tool Accessories",
-"count": 999
+"count": 15,
+"name": "Tool Accessories"
 },
 "851": {
 "parentId": "892",
-"name": "Tattoos & Body Art",
-"count": 74
+"count": 1,
+"name": "Tattoos & Body Art"
 },
 "931": {
 "parentId": "892",
-"name": "Makeup",
-"count": 1055
+"count": 4,
+"name": "Makeup"
 },
 "98": {
 "parentId": "140",
-"name": "Chargers & Cables",
-"count": 1695
+"count": 41,
+"name": "Chargers & Cables"
+},
+"4673": {
+"parentId": "274",
+"name": "Kids",
+"count": 71
 }
 }
