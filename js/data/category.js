@@ -25,7 +25,7 @@ addArrayToDataCategory([
 "parentId": "0"
 },
 {
-"category": "Cell Phones & Accessories ",
+"category": "Mobile Phones & Accessories",
 "categoryId": "140",
 "parentId": "0"
 },
@@ -567,7 +567,7 @@ addArrayToDataCategory([
 {
 "category": "Laser Equipment",
 "categoryId": "3491",
-"parentId": "1091"
+"parentId": "6518"
 },
 {
 "category": "Faucets",
@@ -2490,9 +2490,9 @@ addArrayToDataCategory([
 "parentId": "1712"
 },
 {
-"category": "Hair Tools & Salon",
+"category": "Hair Styling Tools & Salon",
 "categoryId": "3867",
-"parentId": "895"
+"parentId": "892"
 },
 {
 "category": "Hair trimmer",
@@ -2577,7 +2577,7 @@ addArrayToDataCategory([
 {
 "category": "RC Robot",
 "categoryId": "3993",
-"parentId": "1729"
+"parentId": "133"
 },
 {
 "category": "Drums & Percussion",
@@ -4342,7 +4342,7 @@ addArrayToDataCategory([
 {
 "category": "Electrical Equipment & Supplies",
 "categoryId": "2903",
-"parentId": "2718"
+"parentId": "6518"
 },
 {
 "category": "HTC Cases Covers",
@@ -5013,5 +5013,40 @@ addArrayToDataCategory([
 "category": "Body Jewelry",
 "categoryId": "854",
 "parentId": "2433"
+},
+{
+"category": "Tool Accessories",
+"categoryId": "6527",
+"parentId": "6518"
+},
+{
+"category": "Mobile Phones Accessories",
+"categoryId": "6494",
+"parentId": "140"
+},
+{
+"category": "Tapes, Adhesives & Sealants",
+"categoryId": "5955",
+"parentId": "6518"
+},
+{
+"category": "Team Sport",
+"categoryId": "5658",
+"parentId": "896"
+},
+{
+"category": "Raw Materials",
+"categoryId": "5986",
+"parentId": "6518"
+},
+{
+"category": "Tools, Industrial & Scientific",
+"categoryId": "6518",
+"parentId": "0"
+},
+{
+"category": "Fasteners",
+"categoryId": "5954",
+"parentId": "6518"
 }
 ]);
